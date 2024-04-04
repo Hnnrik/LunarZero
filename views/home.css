@@ -1,0 +1,632 @@
+@media screen and (max-width:768px){
+    #bodyDasktop{
+        display: none;
+    }
+    *{
+        margin: 0 auto;
+        padding: 0 auto;
+    }
+    
+    html{
+        height: 100%;
+        width: 100%;
+    }
+    
+    body{
+        background-color: #A69DB0;
+        width: 100vw;
+        overflow: hidden;
+    }
+    
+    button {
+        background-color: transparent !important;
+        border: none !important;
+    }
+    
+    #section-mobile-home {
+        background-color: #37264A;
+        border-radius: 0px 0px 120px 120px;
+        width: auto;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    #logo-astronauta {
+        transform: scaleX(-1);
+        height: 90%;
+        width: auto;
+        display: flex;
+    }
+    
+    #section-criador-lunar {
+        margin: 10px auto 10px auto;
+        width: 320px;
+        position: relative;
+        top: -40px;
+        z-index: 2;
+    }
+    
+    .texto-criador-lunar {
+        color: #D9D9D9;
+        width: auto;
+    }
+    
+    #titulo-criador-lunar {
+        margin: 10px;
+    }
+    
+    #paragrafo-criador-lunar {
+        text-align: justify;
+        padding: 5px 15px 5px 15px;
+        margin: 0px;
+    }
+    
+    #div-titulo-criador-lunar {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        background-color: #03051A;
+        border-radius: 50px 50px 10px 10px;
+        margin: 0px 0px 10px 0px;
+        height: 10%;
+    }
+    
+    #div-descricao-criador-lunar {
+        background-color: #03051A;
+        border-radius: 10px 10px 50px 50px;
+        display: flex;
+    }
+    
+    #btn-estrela-mobile {
+        background-color: #D9D9D9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px 0px 0px 50px;
+        padding: auto;
+    }
+    
+    .btn-nav-mobile-img {
+        max-width: 83%;
+        margin-bottom: 20%;
+    }
+    
+    .btn-src-mobile-img {
+        max-width: 60%;
+        margin-bottom: 10%;
+        margin-left: 20%;
+    }
+    
+    .btn-detalhes-mobile-img {
+        max-width: 83%;
+        margin: 10%;
+    }
+    
+    .btn-src-mobile {
+        background-color: #03051A;
+        height: 15%;
+        width: 15%;
+        margin: 0;
+        padding: 3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px 0px 5px 30px;
+        padding: auto;
+    }
+    
+    .btn-nav-mobile {
+        background-color: #03051A;
+        height: 15%;
+        width: 15%;
+        margin: 0;
+        padding: 3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0px 5px 30px 5px;
+        padding: auto;
+    }
+    
+    .carousel-container {
+        width: 100%;
+        overflow: hidden; /* Oculta a barra de rolagem */
+    }
+    
+    .cards-container {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden; /* Oculta a barra de rolagem vertical */
+        scrollbar-width: thin; /* para navegadores Firefox */
+        scrollbar-color: transparent transparent; /* para navegadores Firefox */
+        -ms-overflow-style: none; /* para navegadores Internet Explorer e Microsoft Edge antigos */
+    }
+    #jogos-da-semana-card {
+        background-color: #D9D9D9;
+        border-radius: 15px;
+        box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.40);
+        padding: 10px;
+        margin: 10px 10px 10px 10px;
+        width: 200px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #jogos-da-semana-card h4 {
+        margin: 5px 5px 5px 5px;
+        font-size: 20px;
+    }
+    
+    .card {
+        width: 200px;
+        border: 0px;
+        border-radius: 20px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.5s;
+    }
+    
+    .card img {
+
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    
+    .card:hover {
+        transform: scale
+    }
+    
+    .jogo-container {
+        margin: 0px 10px 0px 0px;
+        position: relative;
+    }
+    
+    #jogo-container-1 {
+        margin-left: 10px;
+    }
+    
+    .btn-carrossel-mobile {
+        display: none;
+    }
+    
+    .btn-carrossel-mobile-img {
+        display: none;
+    }
+    
+    ul,
+    ol {
+        list-style-type: none;
+    }
+    
+    #gatilhoMenu{
+        position: relative;
+        z-index: 11;
+    }
+        
+    .conteudoOffCanvas{
+        height: 100vh;
+        width: 40vw;
+        position: fixed;
+        left: -40vw;
+        background-color: #03051A;
+        transition: left 0.3s ease;
+        z-index: 10;
+    }
+    
+    .listaOffCanvas {
+        margin-top: 20%;
+        display: flex;
+        flex-direction: column; 
+        justify-content: space-around; 
+        padding-top:40%;
+    }
+    .listaOffCanvas li{
+        margin-bottom: 40%;
+    }
+    .listaOffCanvas a{
+        display: flex;
+        justify-content: space-evenly; 
+        align-items: center;
+    }
+    .iconeMenu{
+        max-width: 90%;
+    }
+    
+    .ativarOffCanvas{
+        transform: none !important;
+        left: 0;
+    }
+    .campo-pesquisa {
+        display: none;
+        background-color: rgba(0, 0, 0, 0.5); 
+        position: fixed;
+        top: 0.5%;
+        left: 22%;
+        justify-content: center;
+        align-items: center;
+        z-index: 5;
+    }
+    .input-pesquisa {
+        width: calc(100% - 0px); 
+        height: 100%;
+        background-color: transparent;
+        border: none;
+        z-index: 0;
+    }
+    .campo-pesquisa.ativo {
+        display: flex;
+        background-color: transparent;
+    }
+    
+    #inputPesquisa {
+        margin-right: 10px;
+    }
+    .fade-preto {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3); 
+        z-index: 4; 
+        display: none; 
+    }
+}
+
+@media screen and (min-width:769px){
+    #bodyMobile{
+        display: none;
+    }
+*{
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+button{
+
+    border: none;
+    background-color: transparent;
+}
+body {
+    background-color: #A69DB0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+header{
+    height: 40vh;
+    width: 100vw;
+}
+main{
+    height: 61vh;
+    width: 100vw;
+    margin-bottom: 13%;
+}
+footer{
+    width: 100%;
+    height: 7vh;
+    background-color: #37264A;
+    border: none;
+    color: #c4c4c4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+   
+   
+}
+
+header section{
+    height: 85%;
+    background-color: #37264A;
+    display: flex;
+    border-radius: 0px 0px 0px 100px;
+    align-items: center; /* Centraliza verticalmente */
+
+}
+
+header section img{
+    height: 85%;
+    transform: scaleX(-1);
+    
+}
+
+header section h1{
+   color: #D9D9D9;
+   font-size:x-large;
+   margin-left: 5%; 
+}
+#div-h1{
+    margin-top: 7%;
+    width: 100%;
+    height: 40px;
+    background-color: #03051A;
+    color: #D9D9D9;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-radius: 100px 400px 10px 50px;
+}
+#div-p{
+
+    margin-top: 1%;
+    width: 98%;
+    height: 90px;
+    background-color: #03051A; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 20px 400px 50px;
+    padding: 1%;
+}
+header section p{
+    color: #D9D9D9;
+    font-size:large;
+    margin: 1%;
+    text-align: start;
+}
+#criador-btn{
+    margin-top: 2%;
+    width: 40%;
+    display: flex;
+    height: 30px;
+    background-color: #D9D9D9;
+    border-radius:  20px 50px 50px 100px;
+    color: #03051A !important;
+    font-size: medium;
+    margin-left: 0%;
+    
+   
+}
+#criador-btn button{
+  width: 100%;
+  height: 100%;
+  text-align: start;
+
+}
+#criador-btn img{
+    width: auto;
+    height: 100%;
+    margin: 0px;
+    transform: scaleX(1);
+
+
+}
+nav{
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.40); 
+    color: white;   
+    background-color: #37264A;
+    height: 16%;
+    width: 100%;    
+    display: inline-flex;
+    flex-wrap: nowrap;
+    left: 0;
+    align-items: center; /* Centraliza verticalmente os itens */
+    justify-content: center; /* Centraliza horizontalmente os itens */
+}
+.logo{
+    height: 100%;
+    display: flex;
+    background-color: #37264A;
+    align-items: center;
+    justify-content: start;
+    width: 11%;
+    border-radius: 10px;
+}
+
+
+.logo h4{
+  margin: 0%;
+  font-size: x-large;
+}
+
+.logo img{
+    height: 90%;
+    margin: 4px;
+   
+  
+   
+}
+.menu {
+    background-color: #03051A;
+    height: 100%;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    width: 70%;
+    border-radius: 50px 0 50px 0;
+    margin: 0px;
+}
+.iconeMenu {
+    height: 50%;
+    margin: 0;
+}
+.menu li{
+    margin-top:2%;
+    height: 90%;
+  
+   
+}
+nav form{
+    height: 100%;
+    display: flex;
+    align-items: center;
+   
+
+}
+.input-pesquisa{
+    width: 70%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    z-index: 0;
+  
+
+ }
+ #div-pesquisa{
+     border: none;
+     height: 50%; 
+     background-color: #D9D9D9;
+     box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.40); 
+     border-radius: 50px;
+     display: flex;
+ }
+
+ #img-scr{
+     width: 20%;
+     height: 100%;
+     align-items: center;
+     display: flex;
+     padding-top: 1%;
+ }
+ #img-src-img{
+     width: 100%;
+     height: 100%;
+ }
+ .perfil{
+    width: auto;
+    height: 90%;
+ }
+ .perfil img{
+    background-color: #D9D9D9;
+    height: 100%;
+    width: auto;
+    border-radius: 50%;
+ }
+.criador{
+    height: 100%;
+
+}
+    .carousel-container {
+        width: 100%;
+        overflow: hidden; /* Oculta a barra de rolagem */
+    }
+    
+    .cards-container {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden; /* Oculta a barra de rolagem vertical */
+        scrollbar-width: thin; /* para navegadores Firefox */
+        scrollbar-color: transparent transparent; /* para navegadores Firefox */
+        -ms-overflow-style: none; /* para navegadores Internet Explorer e Microsoft Edge antigos */
+    }
+    
+    .cards-container::-webkit-scrollbar {
+        display: none; /* para navegadores baseados em Chromium, como o Google Chrome e o Microsoft Edge */
+    }
+    
+    
+    #jogos-da-semana-card {
+        background-color: #D9D9D9;
+        border-radius: 15px;
+        box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.40);
+        padding: 10px;
+        margin: 2% 10px 10px 10px;
+        width: 200px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    
+    #jogos-da-semana-card h4 {
+        margin: 5% 5px 5px 5px;
+        font-size: 20px;
+    }
+    
+    .card {
+        width: 200px;
+        border: 0px;
+        border-radius: 20px;
+        overflow: hidden;
+        cursor: pointer;
+        position: relative;
+        transition: transform 0.5s;
+    }
+    
+    .card img {
+        object-fit: cover;
+        border-radius: 10px;
+        z-index: 10;
+    }
+    
+    .card:hover {
+        transform: scale
+    }
+    
+    .jogo-container {
+        margin: 0px 10px 0px 0px;
+        position: relative;
+    }
+    
+    #jogo-container-1 {
+        margin-left: 10px;
+        position: relative;
+
+    }
+    
+    .btn-carrossel-mobile {
+        background-color: #37264A;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        height: 25%;
+        width: 25%;
+        margin: 0;
+        padding: 3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px 0px 20px 0px;
+        padding: auto;
+        z-index: 1;
+    }
+    
+    .btn-carrossel-mobile-img {
+        height: 100%;
+        width: 80%;
+        align-items: center;
+        justify-content: center;
+    }
+    #description {
+        position: absolute;
+        top:50%;
+        left: -50%;
+        bottom: 0%;
+        display: flex;
+        align-items: center;
+        transform: translate(-50%, -50%);
+        z-index: 1; /* Certifica-se de que o texto esteja na frente da imagem */
+        color: white; /* Define a cor do texto */
+        width: 90%; 
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Adiciona um fundo semi-transparente para destacar o texto */
+        padding: 10px; /* Adiciona um preenchimento ao redor do texto */
+        border-radius: 5px; /* Adiciona bordas arredondadas */
+    }
+    .description-active{
+        left: 50% !important;
+    }
+
+    
+
+}
+img{
+    pointer-events: none;
+}
+html {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    height: 100%;
+    width: 100%;
+}
+ul,
+ol {
+    list-style-type: none;
+}
