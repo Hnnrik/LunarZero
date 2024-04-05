@@ -402,15 +402,15 @@
                 <div class="cards-container">
                     <% jogos.forEach(jogo => { %>
                         <div class="jogo-container" onclick="redirectJogo('<%= jogo._id %>')" action="">
-                            <div class="card">
-                                <img src="<%= jogo.imagem %>" alt="<%= jogo.nome %>">
-                                <div class="descricao" id="description-<%= jogo._id %>">
-                                    <p></p> <!-- O conteúdo será preenchido dinamicamente com JavaScript -->
+                           
+                                <div class="card">
+                                    <img src="<%= jogo.imagem %>" alt="Imagem 1">
+                                    <div class="descricao" id="description">
+                                        <p><%= jogo.descricao %></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <span class="btn-carrossel-mobile" 
-                                onmouseenter="showDescription('<%= jogo._id %>', '<%= jogo.descricao %>')" 
-                                onmouseleave="hideDescription('<%= jogo._id %>')">
+                            
+                            <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
                                 <button>
                                     <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
                                 </button>
