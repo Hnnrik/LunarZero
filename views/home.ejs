@@ -401,16 +401,13 @@
             <div class="carousel-container">
                 <div class="cards-container">
                     <% jogos.forEach(jogo => { %>
-                        <div class="jogo-container">
-                            <a href="<%= jogo.link %>" class="card-link">
-                                <div class="card">
-                                    <img src="<%= jogo.imagem %>" alt="<%= jogo.nome %>">
-                                    <!-- Div para exibir a descrição -->
-                                    <div class="descricao" id="description-<%= jogo._id %>">
-                                        <p></p> <!-- O conteúdo será preenchido dinamicamente com JavaScript -->
-                                    </div>
+                        <div class="jogo-container" onclick="redirectJogo('<%= jogo._id %>')" action="">
+                            <div class="card">
+                                <img src="<%= jogo.imagem %>" alt="<%= jogo.nome %>">
+                                <div class="descricao" id="description-<%= jogo._id %>">
+                                    <p></p> <!-- O conteúdo será preenchido dinamicamente com JavaScript -->
                                 </div>
-                            </a>
+                            </div>
                             <span class="btn-carrossel-mobile" 
                                 onmouseenter="showDescription('<%= jogo._id %>', '<%= jogo.descricao %>')" 
                                 onmouseleave="hideDescription('<%= jogo._id %>')">
@@ -422,9 +419,14 @@
                     <% }); %>
                 </div>
             </div>
-        </main>
-        
-        <script>
+            
+            <script>
+                function redirectJogo(id) {
+                    console.log('Redirecionando para o jogo com ID:', id);
+                    window.location.href = '/tela-jogo/'+id; // Substitua '/jogos/' pelo caminho real da sua rota de detalhes do jogo
+                    return false; // Impede que o link seja seguido
+                }
+            
             function showDescription(jogoId, descricao) {
                 // Encontrar o elemento da descrição pelo ID do jogo
                 const descricaoElement = document.getElementById(`description-${jogoId}`);

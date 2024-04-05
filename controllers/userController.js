@@ -2,9 +2,15 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const session = require('express-session');
 const Jogo = require('../models/jogoModel');
 const Usuario = require('../models/usuarioModel');
 
+router.use(session({
+  secret: 'segredo', // Uma chave secreta para assinar os cookies de sessão
+  resave: false,
+  saveUninitialized: true
+}));
 
 router.get('/', async (req, res) => {
   try {
@@ -29,16 +35,19 @@ router.get('/biblioteca', async (req, res) => {
 });
 
 
-function verificaAutenticacao(req, res, next) {
+const verificarAutenticacao = (req, res, next) => {
+  // Verificar se há uma sessão de usuário
   if (req.session.usuario) {
+    
     next();
   } else {
+    // Se não houver uma sessão de usuário, redirecione para a página de login
     res.redirect('/login');
   }
-}
+};
 
 
-router.get('/cadastro-jogo', verificaAutenticacao ,(req, res) => {
+router.get('/cadastro-jogo', verificarAutenticacao ,(req, res) => {
   res.sendFile(path.join(__dirname,'..', 'views', 'cadastro-jogo.html'));
 });
 
@@ -49,6 +58,19 @@ router.get('/criador', (req, res) => {
 router.get('/jogos', (req, res) => {
   res.sendFile(path.join(__dirname, '..','views', 'jogos.html'));
 });
+
+router.get('/tela-jogo/:id', async (req, res) => {
+  try {
+      const jogo = await Jogo.findById(req.params.id);
+      if (!jogo) {
+          return res.status(404).send('Jogo não encontrado');
+      }
+      res.render('tela-jogo',{jogo});
+  } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao recuperar informações do jogo');
+  }
+}); 
 
 router.get('/sobre', (req, res) => {
   res.sendFile(path.join(__dirname, '..','views', 'sobre.html'));
@@ -67,16 +89,21 @@ router.post('/login', async (req, res) => {
   try {
     const { email, senha } = req.body;
 
+    // Verificar se o usuário existe no banco de dados
     const usuario = await Usuario.findOne({ email, senha });
     if (!usuario) {
-      return res.status(401).json({ message: 'Credenciais inválidas' });
+      // Se o usuário não existir, redirecione de volta para a página de login com uma mensagem de erro
+      return res.redirect('/login?erro=Usuario ou senha incorretos');
     }
-    
+
+    // Se o usuário existir, defina a sessão do usuário
+    req.session.usuario = usuario;
+
+    // Redirecione para a página desejada após o login bem-sucedido
     res.redirect('/');
-    //res.status(200).json({ message: 'Login bem-sucedido', usuario });
   } catch (error) {
-    console.error('Erro ao fazer login:', error);
-    res.status(500).json({ message: 'Erro ao fazer login' });
+    console.error('Erro ao processar login:', error);
+    res.status(500).json({ message: 'Erro ao processar login.' });
   }
 });
 
