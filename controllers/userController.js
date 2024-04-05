@@ -5,6 +5,7 @@ const path = require('path');
 const session = require('express-session');
 const Jogo = require('../models/jogoModel');
 const Usuario = require('../models/usuarioModel');
+const Comentario = require('../models/comentarioModel');
 
 router.use(session({
   secret: 'segredo', // Uma chave secreta para assinar os cookies de sessão
@@ -36,12 +37,9 @@ router.get('/biblioteca', async (req, res) => {
 
 
 const verificarAutenticacao = (req, res, next) => {
-  // Verificar se há uma sessão de usuário
   if (req.session.usuario) {
-    
     next();
   } else {
-    // Se não houver uma sessão de usuário, redirecione para a página de login
     res.redirect('/login');
   }
 };
@@ -59,13 +57,40 @@ router.get('/jogos', (req, res) => {
   res.sendFile(path.join(__dirname, '..','views', 'jogos.html'));
 });
 
+router.post('/tela-jogo/:id/comentario', async (req, res) => {
+  try { 
+    const { texto, nota, usuario } = req.body;
+    const jogoId = req.params.id;
+
+    // Encontre o jogo correspondente pelo ID
+    const jogo = await Jogo.findById(jogoId);
+    if (!jogo) {
+      return res.status(404).send('Jogo não encontrado');
+    }
+
+    // Crie um novo documento de comentário
+    const novoComentario = new Comentario({ texto, nota, usuario });
+
+    // Adicione o novo comentário ao vetor de comentários do jogo
+    jogo.comentarios.push(novoComentario);
+
+    // Salve o jogo atualizado de volta no banco de dados
+    await jogo.save();
+
+    res.status(201).send('Comentário enviado com sucesso');
+  } catch (error) {
+    console.error('Erro ao enviar comentário:', error);
+    res.status(500).send('Ocorreu um erro ao enviar o comentário');
+  }
+});
+
 router.get('/tela-jogo/:id', async (req, res) => {
   try {
       const jogo = await Jogo.findById(req.params.id);
       if (!jogo) {
           return res.status(404).send('Jogo não encontrado');
       }
-      res.render('tela-jogo',{jogo});
+      res.render('tela-jogo', { jogo });
   } catch (error) {
       console.error(error);
       res.status(500).send('Erro ao recuperar informações do jogo');
@@ -89,15 +114,13 @@ router.post('/login', async (req, res) => {
   try {
     const { email, senha } = req.body;
 
-    // Verificar se o usuário existe no banco de dados
     const usuario = await Usuario.findOne({ email, senha });
     if (!usuario) {
-      // Se o usuário não existir, redirecione de volta para a página de login com uma mensagem de erro
       return res.redirect('/login?erro=Usuario ou senha incorretos');
     }
 
-    // Se o usuário existir, defina a sessão do usuário
     req.session.usuario = usuario;
+    const nomeUsuario = req.session.usuario.nome;
 
     // Redirecione para a página desejada após o login bem-sucedido
     res.redirect('/');
