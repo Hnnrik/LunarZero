@@ -15,6 +15,17 @@
 </head>
 <body>
 
+    <style>
+        .star {
+            font-size: 30px;
+            cursor: pointer;
+            color: #ccc;
+        }
+        .estrelas{
+            display: inline;
+            margin-bottom: 5%;
+        }
+    </style>
 
 <section id="bodyMobile">
     <header>
@@ -370,9 +381,14 @@
                                 <div class="div-nome-do-usuario-do-comentario">
                                     <h5 class="nome-do-usuario-do-comentario"><%= nome %></h5>
                                 </div>
-                                <div class="div-avaliacao-do-comentario">
-                                    <img class="avaliacao-do-comentario" src="/public/icones/estrelas-avaliacao.svg" alt="">
+                                <div class="div-avaliacao-do-comentario estrelas" id="stars">
+                                    <span class="star" data-value="1">&#9733;</span>
+                                    <span class="star" data-value="2">&#9733;</span>
+                                    <span class="star" data-value="3">&#9733;</span>
+                                    <span class="star" data-value="4">&#9733;</span>
+                                    <span class="star" data-value="5">&#9733;</span>
                                 </div>
+                                <input type="hidden" name="nota" id="nota" value="0"> <!-- Adicione um campo oculto para a nota -->
                             </div>
                         </div>
                         <div class="div-do-paragrafo-do-comentario">
@@ -380,11 +396,29 @@
                                 <textarea name="texto" placeholder="COMENTÁRIO..." style="width: 100%;"></textarea>
                             </p>
                         </div>
-                        <input type="number" name="nota" placeholder="Nota" min="1" max="5"> <!-- Adicione um campo para a nota -->
-                         <!-- Adicione um campo oculto para o nome do usuário -->
                         <input type="submit">
                     </form>
-                    
+                    <script>
+    const stars = document.querySelectorAll('.star');
+
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const value = parseInt(star.getAttribute('data-value'));
+            document.getElementById('nota').value = value;
+            highlightStars(value);
+        });
+    });
+
+    function highlightStars(value) {
+        stars.forEach((star, index) => {
+            if (index < value) {
+                star.style.color = '#ffc107'; // Cor amarela para estrelas selecionadas
+            } else {
+                star.style.color = '#ccc'; // Cor padrão para estrelas não selecionadas
+            }
+        });
+    }
+</script>
                 </div>
                 <div class="comentario">
                     <div class="div-do-header-do-comentario">
