@@ -58,8 +58,8 @@ router.get('/jogos', (req, res) => {
 });
 
 router.post('/tela-jogo/:id/comentario', async (req, res) => {
-  try { 
-    const { texto, nota, usuario } = req.body;
+  try {
+    const { texto, nota } = req.body;
     const jogoId = req.params.id;
 
     // Encontre o jogo correspondente pelo ID
@@ -68,8 +68,16 @@ router.post('/tela-jogo/:id/comentario', async (req, res) => {
       return res.status(404).send('Jogo não encontrado');
     }
 
-    // Crie um novo documento de comentário
-    const novoComentario = new Comentario({ texto, nota, usuario });
+    // Verifique se o usuário está autenticado
+    if (!req.session.nomeDeUsuario) {
+      return res.status(401).send('Usuário não autenticado');
+    }
+
+    // Recupere o nome de usuário da sessão
+    const nomeUsuario = req.session.nomeDeUsuario;
+
+    // Crie um novo documento de comentário com o nome de usuário
+    const novoComentario = new Comentario({ texto, nota, usuario: nomeUsuario });
 
     // Adicione o novo comentário ao vetor de comentários do jogo
     jogo.comentarios.push(novoComentario);
@@ -84,13 +92,15 @@ router.post('/tela-jogo/:id/comentario', async (req, res) => {
   }
 });
 
+
 router.get('/tela-jogo/:id', async (req, res) => {
   try {
+    const nome =req.session.nomeDeUsuario;
       const jogo = await Jogo.findById(req.params.id);
       if (!jogo) {
           return res.status(404).send('Jogo não encontrado');
       }
-      res.render('tela-jogo', { jogo });
+      res.render('tela-jogo', {  jogo, nome });
   } catch (error) {
       console.error(error);
       res.status(500).send('Erro ao recuperar informações do jogo');
@@ -120,7 +130,8 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.usuario = usuario;
-    const nomeUsuario = req.session.usuario.nome;
+    req.session.nomeDeUsuario=usuario.nome;
+    // Definindo a variável nomeUsuario
 
     // Redirecione para a página desejada após o login bem-sucedido
     res.redirect('/');

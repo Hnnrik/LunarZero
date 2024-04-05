@@ -368,7 +368,7 @@
                             </div>
                             <div class="div-perfil-e-avaliacao-do-comentario">
                                 <div class="div-nome-do-usuario-do-comentario">
-                                    <h5 class="nome-do-usuario-do-comentario"></h5>
+                                    <h5 class="nome-do-usuario-do-comentario"><%= nome %></h5>
                                 </div>
                                 <div class="div-avaliacao-do-comentario">
                                     <img class="avaliacao-do-comentario" src="/public/icones/estrelas-avaliacao.svg" alt="">
@@ -381,7 +381,7 @@
                             </p>
                         </div>
                         <input type="number" name="nota" placeholder="Nota" min="1" max="5"> <!-- Adicione um campo para a nota -->
-                        <input type="hidden" name="usuario" value="<%= nomeUsuario %>"> <!-- Adicione um campo oculto para o nome do usuário -->
+                         <!-- Adicione um campo oculto para o nome do usuário -->
                         <input type="submit">
                     </form>
                     
