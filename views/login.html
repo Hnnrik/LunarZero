@@ -20,15 +20,13 @@
             <label for="">LOGIN</label>   
         </div>
         <div class="formulario">
-            <form  action="">
-                <input  type="text" placeholder="EMAIL">
-                <input type="text" placeholder="SENHA">
+            <form action="/login" method="POST">
+                <input  type="email" name="email" placeholder="EMAIL" required>
+                <input type="password" name="senha" placeholder="SENHA" required>
                 <div>
-                    <button id="btnlogin"><a href="">LOGIN</a></button>
+                    <button id="btnlogin" type="submit"><a href="">LOGIN</a></button>
                    <button id="btncadastro"> <a href="registrar.html">CADASTRAR</a></button>
-
                 </div>
-                
             </form>
         </div>
         

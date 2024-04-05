@@ -22,15 +22,15 @@
         </div>
 
         <div class="formulario">
-            <form  action="">
-                <input type="text" placeholder="NOME">
+            <form action="/registrar" method="POST"> <!-- Defina o atributo "action" para a rota de registro e o método "POST" -->
+                <input type="text" placeholder="NOME" name="nome">
                 <div>
-                    <input type="text" placeholder="NOME DE USUÁRIO">
-                    <input type="text" placeholder="DATA DE NASCIMENTO">
+                    <input type="text" placeholder="NOME DE USUÁRIO" name="nomeDeUsuario">
+                    <input type="text" placeholder="DATA DE NASCIMENTO" name="dataNascimento">
                 </div>
-                <input type="text" placeholder="EMAIL">
-                <input type="text" placeholder="SENHA">
-                <input type="text" placeholder="CONFIRMAR SENHA">
+                <input type="email" placeholder="EMAIL" name="email"> <!-- Alterado para type="email" para validar o formato do email -->
+                <input type="password" placeholder="SENHA" name="senha"> <!-- Alterado para type="password" para ocultar a senha -->
+                <input type="password" placeholder="CONFIRMAR SENHA"> <!-- Adicionado campo para confirmar senha -->
                 <button id="#btncadastro" type="submit">CADASTRAR</button>
             </form>
         </div>

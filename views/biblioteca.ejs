@@ -15,7 +15,7 @@
             <div class="logo" id="redireciona"> 
                 <script>
                     document.getElementById("redireciona").addEventListener("click", function() {
-                        window.location.href = "home.html";
+                        window.location.href = "home    ";
                     });
                 </script>
                     <img src="fotos/lunarfoguete.png" alt="">
@@ -85,50 +85,9 @@
     </div>
 
 <section class="cont-jogos">
-    
-        <div><img src="fotos/Jogo1.PNG" alt=""></div>
-        <div><img src="fotos/jogo2.PNG" alt=""></div>
-        <div><img src="fotos/jogo3.PNG" alt=""></div>
-        <div><img src="fotos/jogo4.PNG" alt=""></div>
-        <div><img src="fotos/jogo5.PNG" alt=""></div>
-        <div><img src="fotos/jogo6.PNG" alt=""></div>
-        <div><img src="fotos/jogo7.PNG" alt=""></div>
-        <div><img src="fotos/jogo8.PNG" alt=""></div>
-        <div><img src="fotos/jogo9.PNG" alt=""></div>
-        <div><img src="fotos/jogo10.PNG" alt=""></div> 
-        <div><img src="fotos/Jogo1.PNG" alt=""></div>
-        <div><img src="fotos/jogo2.PNG" alt=""></div>
-        <div><img src="fotos/jogo3.PNG" alt=""></div>
-        <div><img src="fotos/jogo4.PNG" alt=""></div>
-        <div><img src="fotos/jogo5.PNG" alt=""></div>
-        <div><img src="fotos/jogo6.PNG" alt=""></div>
-        <div><img src="fotos/jogo7.PNG" alt=""></div>
-        <div><img src="fotos/jogo8.PNG" alt=""></div>
-        <div><img src="fotos/jogo9.PNG" alt=""></div>
-        <div><img src="fotos/jogo10.PNG" alt=""></div> 
-        <div><img src="fotos/Jogo1.PNG" alt=""></div>
-        <div><img src="fotos/jogo2.PNG" alt=""></div>
-        <div><img src="fotos/jogo3.PNG" alt=""></div>
-        <div><img src="fotos/jogo4.PNG" alt=""></div>
-        <div><img src="fotos/jogo5.PNG" alt=""></div>
-        <div><img src="fotos/jogo6.PNG" alt=""></div>
-        <div><img src="fotos/jogo7.PNG" alt=""></div>
-        <div><img src="fotos/jogo8.PNG" alt=""></div>
-        <div><img src="fotos/jogo9.PNG" alt=""></div>
-        <div><img src="fotos/jogo10.PNG" alt=""></div> 
-        <div><img src="fotos/Jogo1.PNG" alt=""></div>
-        <div><img src="fotos/jogo2.PNG" alt=""></div>
-        <div><img src="fotos/jogo3.PNG" alt=""></div>
-        <div><img src="fotos/jogo4.PNG" alt=""></div>
-        <div><img src="fotos/jogo5.PNG" alt=""></div>
-        <div><img src="fotos/jogo6.PNG" alt=""></div>
-        <div><img src="fotos/jogo7.PNG" alt=""></div>
-        <div><img src="fotos/jogo8.PNG" alt=""></div>
-        <div><img src="fotos/jogo9.PNG" alt=""></div>
-        <div><img src="fotos/jogo10.PNG" alt=""></div> 
-
-   
-         
+    <% jogos.forEach(jogo => { %>
+        <div><a href="#"><img src="<%= jogo.imagem %>" alt=""></a></div>
+    <% }); %>
 </section>
 
        
