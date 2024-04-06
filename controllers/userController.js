@@ -45,16 +45,19 @@ router.get('/deletar-jogo/:id', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const jogos = await Jogo.find();
+    // Consulte os jogos ordenados pela data de criação de forma decrescente
+    const jogos = await Jogo.find().sort({ createdAt: -1 });
+    const jogosO = await Jogo.find().sort({ nota: -1 });
     // Verifique se o usuário está autenticado
     const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
 
-    res.render('home', { jogos, nomeUsuario });
+    res.render('home', { jogos,jogosO, nomeUsuario });
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro ao recuperar os jogos.');
   }
 });
+
 // Adicione a importação do modelo de Jogo no início do arquivo
 
 router.get('/biblioteca', async (req, res) => {
