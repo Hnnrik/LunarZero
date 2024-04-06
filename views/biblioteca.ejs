@@ -7,6 +7,8 @@
     <script src="script.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <title>Biblioteca</title>
 </head>
 <body>
@@ -83,12 +85,30 @@
             </li>
         </ul>
     </div>
+<!-- Scripts do Bootstrap e do jQuery -->
+
 
 <section class="cont-jogos">
     <% jogos.forEach(jogo => { %>
-        <div><a href="#"><img src="<%= jogo.imagem %>" alt=""></a></div>
+        <div class="div-jogo" data-bs-toggle="popover" title="Opções" data-bs-content="<a href='/editar-jogo/<%= jogo._id %>'>Editar</a> | <a href='/deletar-jogo/<%= jogo._id %>'>Deletar</a>">
+            <!-- Imagem do jogo -->
+            <a href="#"><img src="<%= jogo.imagem %>" alt=""></a>
+        </div>
     <% }); %>
 </section>
+
+<script>
+    // Inicialize os popovers do Bootstrap
+    $(document).ready(function(){
+        $('.div-jogo').click(function() {
+            $(this).popover({
+                html: true, // Permitir conteúdo HTML no popover
+                trigger: 'manual' // Definir o gatilho manualmente
+            }).popover('show'); // Mostrar o popover quando a div for clicada
+        });
+    });
+</script>
+
 
        
     </main>

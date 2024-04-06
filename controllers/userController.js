@@ -13,6 +13,26 @@ router.use(session({
   saveUninitialized: true
 }));
 
+
+router.get('/deletar-jogo/:id', async (req, res) => {
+  try {
+    const jogoId = req.params.id;
+    const jogo = await Jogo.findById(jogoId);
+    if (!jogo) {
+      return res.status(404).send('Jogo não encontrado');
+    }
+    await Jogo.findByIdAndDelete(jogoId);
+    res.status(200).send('Jogo deletado com sucesso');
+  } catch (error) {
+    console.error('Erro ao deletar jogo:', error);
+    res.status(500).send('Ocorreu um erro ao deletar o jogo');
+  }
+});
+
+
+module.exports = router;
+
+
 router.get('/', async (req, res) => {
   try {
     const jogos = await Jogo.find();
@@ -24,16 +44,29 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Adicione a importação do modelo de Jogo no início do arquivo
+
 router.get('/biblioteca', async (req, res) => {
   try {
-    const jogos = await Jogo.find();
+    // Verifique se o usuário está autenticado
+    if (!req.session.usuario) {
+      return res.status(401).send('Usuário não autenticado');
+    }
 
+    // Obtenha o ID do usuário atualmente logado
+    const usuarioId = req.session.usuario._id;
+
+    // Consulte os jogos publicados pelo usuário logado
+    const jogos = await Jogo.find({ usuario: usuarioId });
+
+    // Renderize a página com os jogos encontrados
     res.render('biblioteca', { jogos });
   } catch (error) {
     console.error(error);
-    res.status(500).send('Erro ao recuperar os jogos.');
+    res.status(500).send('Erro ao recuperar os jogos da biblioteca');
   }
 });
+
 
 
 const verificarAutenticacao = (req, res, next) => {
@@ -92,6 +125,23 @@ router.post('/tela-jogo/:id/comentario', async (req, res) => {
   }
 });
 
+router.get('/buscar-jogo', async (req, res) => {
+  try {
+      const nomeJogo = req.query.nomeJogo;
+      nomeJogo
+      // Procure o jogo pelo nome no banco de dados
+      const jogo = await Jogo.findOne({ nome: nomeJogo });
+      if (!jogo) {
+          return res.status(404).send('Jogo não encontrado');
+      }
+
+      // Redirecione para a página do jogo com o ID correspondente
+      res.redirect(`/tela-jogo/${jogo._id}`);
+  } catch (error) {
+      console.error('Erro ao buscar jogo:', error);
+      res.status(500).send('Ocorreu um erro ao buscar o jogo');
+  }
+});
 
 router.get('/tela-jogo/:id', async (req, res) => {
   try {
@@ -106,6 +156,49 @@ router.get('/tela-jogo/:id', async (req, res) => {
       res.status(500).send('Erro ao recuperar informações do jogo');
   }
 }); 
+
+router.get('/editar-jogo/:id', async (req, res) => {
+  try {
+    const nome =req.session.nomeDeUsuario;
+      const jogo = await Jogo.findById(req.params.id);
+      if (!jogo) {
+          return res.status(404).send('Jogo não encontrado');
+      }
+      res.render('editar-jogo', {  jogo, nome });
+  } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao recuperar informações do jogo');
+  }
+}); 
+
+router.post('/editar-jog/:id', async (req, res) => {
+  try {
+    const jogoId = req.params.id;
+    const { nome, imagem, descricao, carrossel } = req.body;
+
+    // Verifique se o jogo existe no banco de dados
+    const jogo = await Jogo.findById(jogoId);
+    if (!jogo) {
+      return res.status(404).send('Jogo não encontrado');
+    }
+
+    // Atualize as informações do jogo com os novos dados
+    jogo.nome = nome;
+    jogo.imagem = imagem;
+    jogo.descricao = descricao;
+    jogo.carrossel = carrossel.split(',');
+
+    // Salve as alterações no jogo de volta ao banco de dados
+    await jogo.save();
+
+    // Redirecione para a página de visualização do jogo atualizado
+    res.redirect(`/tela-jogo/${jogoId}`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao editar o jogo');
+  }
+});
+
 
 router.get('/sobre', (req, res) => {
   res.sendFile(path.join(__dirname, '..','views', 'sobre.html'));
@@ -173,15 +266,32 @@ router.post('/registrar', async (req, res) => {
 });
 router.post('/post-jogo', async (req, res) => {
   try {
-    const { nome, imagem,descricao,nota } = req.body;
-    const novoJogo = new Jogo({ nome, imagem ,descricao,nota});
+    const { nome, imagem, descricao, carrossel } = req.body;
+
+    // Obtenha o ID do usuário atual da sessão
+    const usuarioId = req.session.usuario._id;
+
+    // Definindo o valor padrão para nota como null
+    const nota = null;
+    const carrosselArray = carrossel.split(',');
+
+    // Definindo o valor padrão para comentários como um vetor vazio
+    const comentarios = [];
+
+    // Criando um novo jogo com os valores fornecidos e os valores padrão
+    const novoJogo = new Jogo({ nome, imagem, descricao, nota, usuario: usuarioId, carrossel: carrosselArray, comentarios });
+
+    // Salvando o novo jogo no banco de dados
     await novoJogo.save();
+
+    // Enviando uma resposta de sucesso
     res.status(201).send('Jogo criado com sucesso');
   } catch (error) {
     console.error('Erro ao criar jogo:', error);
     res.status(500).send('Ocorreu um erro ao criar o jogo');
   }
 });
+
 
 // Rota POST para criar um novo usuário
 router.post('/post-usuario', async (req, res) => {

@@ -7,6 +7,7 @@ const jogoSchema = new mongoose.Schema({
   carrossel: [String], // Vetor de várias imagens
   descricao: String,
   nota: Number,
+  usuario: { type: mongoose.Schema.Types.ObjectId, ref: 'Usuario' }, // Referência ao ID do usuário que enviou o jogo
   comentarios: [Comentario.schema] // Vetor de comentários usando o esquema de Comentário
 });
 
