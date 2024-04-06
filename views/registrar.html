@@ -39,5 +39,14 @@
             <p>&copy; LUNAR 2024.</p>
     </div>
     </main>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const alertMessage = params.get('alert');
+
+        // Se houver uma mensagem de alerta, exiba-a em um alerta
+        if (alertMessage) {
+            alert(alertMessage);
+        }
+    </script>
 </body>
 </html>

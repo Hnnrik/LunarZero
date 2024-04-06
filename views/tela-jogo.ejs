@@ -35,10 +35,7 @@
                     <img src="/public/icones/menu.svg" class="btn-nav-mobile-img" alt="">
                 </button>
             </span>
-
-
             <div id="menuOffCanvas" class="conteudoOffCanvas">
-                
                 <ul class="listaOffCanvas">
                     <li>
                         <a href="/"><img class="iconeMenu" src="/public/icones/home.svg" alt=""></a>
@@ -232,30 +229,36 @@
     </main>
 
     <footer></footer>
-    <script src="tela-jogo.js"></script>
+   
 </section>
 <section id="bodyDasktop">
     <header>
         <nav>
-            <div class="logo">
-                <img src="/public/fotos/lunarfoguete.png" alt="">
-                <h1 id="titulo-Lunar">LUNAR</h1>
+            <div class="logo" id="redireciona"> 
+                <script>
+                    document.getElementById("redireciona").addEventListener("click", function() {
+                        window.location.href = "/";
+                    });
+                </script>
+                    <img src="/public/fotos/lunarfoguete.png" alt="">
+                    <h4>LUNAR</h4>
             </div>
             <div id="div-navbar">
                 <ul type="none" class="menu">
                     <li>
-                        <a href=""><img class="iconeMenu" src="/public/icones/jogos.svg" alt=""></a>
+                        <a href="biblioteca"><img class="iconeMenu" src="/public/icones/jogos.svg" alt=""></a>
                     </li>
                     <li>
-                        <a href=""><img class="iconeMenu" src="/public/icones/criador.svg" alt=""></a>
+                        <a href="criador.html"><img class="iconeMenu" src="/public/icones/criador.svg" alt=""></a>
                     </li>
                     <li>
-                        <a href=""><img class="iconeMenu" src="/public/icones/sobre.svg" alt=""></a>
+                        <a href="sobre.html"><img class="iconeMenu" src="/public/icones/sobre.svg" alt=""></a>
                     </li>
-                    <form action="">
+                    <form action="/buscar-jogo" method="GET">
                         <div id="div-pesquisa">
-                            <button type="submit" id="img-scr"><img id="img-src-img" src="/public/icones/srcescuro.svg" alt=""></button>
-                            <input class="input-pesquisa" type="text" placeholder="Buscar por Jogo">
+                            <button type="submit" id="img-scr"><img id="img-src-img" src="/icones/srcescuro.svg"
+                                    alt=""></button>
+                            <input class="input-pesquisa" name="nomeJogo" type="text" placeholder="Buscar por Jogo">
                         </div>
                     </form>
                 </ul>
@@ -316,12 +319,7 @@
                                 </div>
                             <% }); %>
                         </div>
-           
-                    
                 </div>
-                
-                
-
             </div>
         </section>
 
@@ -387,6 +385,13 @@
             }
         });
     }
+    const params = new URLSearchParams(window.location.search);
+                const alertMessage = params.get('alert');
+
+                // Se houver uma mensagem de alerta, exiba-a em um alerta
+                if (alertMessage) {
+                    alert(alertMessage);
+                }
 </script>
                 </div>
                 <% jogo.comentarios.forEach(comentario => { %>

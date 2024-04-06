@@ -20,7 +20,7 @@
             <div class="logo" id="redireciona"> 
                 <script>
                     document.getElementById("redireciona").addEventListener("click", function() {
-                        window.location.href = "home.html";
+                        window.location.href = "/";
                     });
                 </script>
                     <img src="fotos/lunarfoguete.png" alt="">
@@ -28,7 +28,10 @@
             </div>
             <ul type="none" class="menu">
                 <li>
-                    <a href="biblioteca.html"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
+                    <a href="biblioteca"><img class="iconeMenu" src="icones/perfil.svg" alt=""></a>
+                </li>
+                <li>
+                    <a href="jogos"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
                 </li>
                 <li>
                     <a href="criador.html"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
@@ -70,6 +73,15 @@
         function activateFileInput() {
             document.getElementById('fileInput').click();
         }
+        // Verifique se há uma mensagem de alerta na query string
+const params = new URLSearchParams(window.location.search);
+const alertMessage = params.get('alert');
+
+// Se houver uma mensagem de alerta, exiba-a em um alerta
+if (alertMessage) {
+  alert(alertMessage);
+}
+
     </script>
 </body>
 </html>

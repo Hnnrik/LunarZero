@@ -13,7 +13,18 @@ router.use(session({
   saveUninitialized: true
 }));
 
-
+router.get('/logout', (req, res) => {
+  // Limpe a sessão do usuário
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Erro ao fazer logout:', err);
+      res.status(500).send('Erro ao fazer logout');
+    } else {
+      // Redirecione para a página inicial após o logout
+      res.redirect('/');
+    }
+  });
+});
 router.get('/deletar-jogo/:id', async (req, res) => {
   try {
     const jogoId = req.params.id;
@@ -30,27 +41,28 @@ router.get('/deletar-jogo/:id', async (req, res) => {
 });
 
 
-module.exports = router;
 
 
 router.get('/', async (req, res) => {
   try {
     const jogos = await Jogo.find();
+    // Verifique se o usuário está autenticado
+    const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
 
-    res.render('home', { jogos });
+    res.render('home', { jogos, nomeUsuario });
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro ao recuperar os jogos.');
   }
 });
-
 // Adicione a importação do modelo de Jogo no início do arquivo
 
 router.get('/biblioteca', async (req, res) => {
   try {
     // Verifique se o usuário está autenticado
     if (!req.session.usuario) {
-      return res.status(401).send('Usuário não autenticado');
+      // Redirecione para a página inicial (home) com uma mensagem de alerta na query string
+      return res.redirect('/?alert=Você precisa estar logado para acessar sua biblioteca');
     }
 
     // Obtenha o ID do usuário atualmente logado
@@ -59,14 +71,13 @@ router.get('/biblioteca', async (req, res) => {
     // Consulte os jogos publicados pelo usuário logado
     const jogos = await Jogo.find({ usuario: usuarioId });
 
-    // Renderize a página com os jogos encontrados
-    res.render('biblioteca', { jogos });
+    // Renderize a página com os jogos encontrados, passando também o nome do usuário
+    res.render('biblioteca', { jogos, nomeUsuario: req.session.usuario.nome });
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro ao recuperar os jogos da biblioteca');
   }
 });
-
 
 
 const verificarAutenticacao = (req, res, next) => {
@@ -86,8 +97,17 @@ router.get('/criador', (req, res) => {
   res.sendFile(path.join(__dirname, '..','views', 'criador.html'));
 });
 
-router.get('/jogos', (req, res) => {
-  res.sendFile(path.join(__dirname, '..','views', 'jogos.html'));
+router.get('/jogos', async (req, res) => {
+  try {
+    const jogos = await Jogo.find();
+    // Verifique se o usuário está autenticado
+    const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
+
+    res.render('jogos', { jogos, nomeUsuario });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao recuperar os jogos.');
+  }
 });
 
 router.post('/tela-jogo/:id/comentario', async (req, res) => {
@@ -103,7 +123,8 @@ router.post('/tela-jogo/:id/comentario', async (req, res) => {
 
     // Verifique se o usuário está autenticado
     if (!req.session.nomeDeUsuario) {
-      return res.status(401).send('Usuário não autenticado');
+      return res.redirect('/tela-jogo/'+jogoId+'?alert=Faça login para comentar nos jogos');
+
     }
 
     // Recupere o nome de usuário da sessão
@@ -118,10 +139,13 @@ router.post('/tela-jogo/:id/comentario', async (req, res) => {
     // Salve o jogo atualizado de volta no banco de dados
     await jogo.save();
 
-    res.status(201).send('Comentário enviado com sucesso');
+    return res.redirect('/tela-jogo/'+jogoId+'?alert=Comentário enviado com sucesso');
+
   } catch (error) {
     console.error('Erro ao enviar comentário:', error);
-    res.status(500).send('Ocorreu um erro ao enviar o comentário');
+    res.status(500);
+    return res.redirect('/?alert=Ocorreu um erro');
+
   }
 });
 
@@ -148,12 +172,13 @@ router.get('/tela-jogo/:id', async (req, res) => {
     const nome =req.session.nomeDeUsuario;
       const jogo = await Jogo.findById(req.params.id);
       if (!jogo) {
-          return res.status(404).send('Jogo não encontrado');
+          return res.redirect('/tela-jogo/'+jogoId+'?alert=Faça login');
       }
       res.render('tela-jogo', {  jogo, nome });
   } catch (error) {
       console.error(error);
-      res.status(500).send('Erro ao recuperar informações do jogo');
+      res.status(500);
+      return res.redirect('/tela-jogo/'+jogoId+'?alert=Faça login');
   }
 }); 
 
@@ -245,7 +270,7 @@ router.post('/registrar', async (req, res) => {
 
     const usuarioExistente = await Usuario.findOne({ $or: [{ nomeDeUsuario }, { email }] });
     if (usuarioExistente) {
-      return res.status(400).json({ message: 'Nome de usuário ou e-mail já está em uso.' });
+      return res.redirect('/registrar?alert=Erro ao cadastrar, nome de usuário ou email já existe');
     }
 
     const novoUsuario = new Usuario({
@@ -258,10 +283,12 @@ router.post('/registrar', async (req, res) => {
 
     // Salvar o novo usuário no banco de dados
     const usuarioSalvo = await novoUsuario.save();
+    return res.redirect('/?alert=Usuário cadastrado');
     res.status(201).json(usuarioSalvo);
   } catch (error) {
     console.error('Erro ao registrar usuário:', error);
-    res.status(500).json({ message: 'Erro ao registrar usuário.' });
+    return res.redirect('/registrar?alert=Erro ao cadastrar, por favor tente novamente');
+
   }
 });
 router.post('/post-jogo', async (req, res) => {
@@ -285,10 +312,14 @@ router.post('/post-jogo', async (req, res) => {
     await novoJogo.save();
 
     // Enviando uma resposta de sucesso
-    res.status(201).send('Jogo criado com sucesso');
+    res.status(201);
+    return res.redirect('/?alert=Jogo cadastrado com sucesso');
+
   } catch (error) {
     console.error('Erro ao criar jogo:', error);
-    res.status(500).send('Ocorreu um erro ao criar o jogo');
+    res.status(500);
+    return res.redirect('/?alert=Erro ao cadastrar jogo, tente novamente');
+
   }
 });
 

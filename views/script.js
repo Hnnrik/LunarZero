@@ -110,3 +110,4 @@ function comentar(){
   const conteudo = document.getElementById('targgetComenta');
   conteudo.classList.toggle('comenta');
 }
+

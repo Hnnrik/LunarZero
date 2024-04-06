@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="home.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
-    <script src="a.js"></script>
+
 </head>
 
 <body>
@@ -27,18 +29,20 @@
                         <img id="iconePesquisa" src="icones/src.svg" class="btn-src-mobile-img" alt="Pesquisar">
                     </button>
                     <div id="campoPesquisa" class="campo-pesquisa">
-                        <form id="formPesquisa" onsubmit="realizarPesquisa(); return false;"> 
+                        <form id="formPesquisa" onsubmit="realizarPesquisa(); return false;">
                             <div id="div-pesquisa">
-                                <input class="input-pesquisa" type="text" placeholder="Buscar por Jogo" id="inputPesquisa">
-                                <button type="submit" id="img-scr"><img id="img-src-img" src="icones/srcescuro.svg" alt=""></button>
+                                <input class="input-pesquisa" type="text" placeholder="Buscar por Jogo"
+                                    id="inputPesquisa">
+                                <button type="submit" id="img-scr"><img id="img-src-img" src="icones/srcescuro.svg"
+                                        alt=""></button>
                             </div>
                         </form>
                     </div>
-                    
+
                 </span>
 
                 <div id="menuOffCanvas" class="conteudoOffCanvas">
-                    
+
                     <ul class="listaOffCanvas">
                         <li>
                             <a href="home.html"><img class="iconeMenu" src="icones/home.svg" alt=""></a>
@@ -53,7 +57,7 @@
                 </div>
             </section>
         </header>
-        <div id="fadePreto" class="fade-preto"></div>   
+        <div id="fadePreto" class="fade-preto"></div>
 
         <main>
             <section id="section-criador-lunar">
@@ -194,7 +198,7 @@
                             <div class="card">
                                 <img src="fotos//jogo10.PNG" alt="Imagem 1">
                             </div>
-                            
+
                         </a>
                         <span class="btn-carrossel-mobile">
                             <button>
@@ -324,7 +328,7 @@
                             <div class="card">
                                 <img src="fotos//jogo10.PNG" alt="Imagem 1">
                             </div>
-                            
+
                         </a>
                         <span class="btn-carrossel-mobile">
                             <button>
@@ -349,7 +353,10 @@
                 </div>
                 <ul type="none" class="menu">
                     <li>
-                        <a href="biblioteca.html"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
+                        <a href="biblioteca"><img class="iconeMenu" src="icones/perfil.svg" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="jogos"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
                     </li>
                     <li>
                         <a href="criador.html"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
@@ -365,9 +372,24 @@
                         </div>
                     </form>
                 </ul>
-                <div class="perfil">
+                <div class="perfil" data-bs-toggle="popover" title="Perfil"
+                    data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
                     <img class="icone" src="https://avatars.githubusercontent.com/u/93449870?v=4">
                 </div>
+
+
+                <script>
+
+                    $(document).ready(function () {
+                        $('.perfil').click(function () {
+                            $(this).popover({
+                                html: true,
+                                trigger: 'manual'
+                            }).popover('show');
+                        });
+                    });
+                </script>
+
             </nav>
             <section>
                 <img class="astro" src="fotos/img.png" alt="">
@@ -400,230 +422,272 @@
             </div>
             <div class="carousel-container">
                 <div class="cards-container">
-                    <% jogos.forEach(jogo => { %>
+                    <% jogos.forEach(jogo=> { %>
                         <div class="jogo-container" onclick="redirectJogo('<%= jogo._id %>')" action="">
-                           
-                                <div class="card">
-                                    <img src="<%= jogo.imagem %>" alt="Imagem 1">
-                                    <div class="descricao" id="description">
-                                        <p><%= jogo.descricao %></p>
-                                    </div>
+
+                            <div class="card">
+                                <img src="<%= jogo.imagem %>" alt="Imagem 1">
+                                <div class="descricao" id="description">
+                                    <p>
+                                        <%= jogo.descricao %>
+                                    </p>
                                 </div>
-                            
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
+                            </div>
+
+                            <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                                onmouseleave="description(event)">
                                 <button>
                                     <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
                                 </button>
                             </span>
                         </div>
-                    <% }); %>
+                        <% }); %>
                 </div>
             </div>
-            
+
             <script>
+                // Verifique se há uma mensagem de alerta na query string
+                const params = new URLSearchParams(window.location.search);
+                const alertMessage = params.get('alert');
+
+                // Se houver uma mensagem de alerta, exiba-a em um alerta
+                if (alertMessage) {
+                    alert(alertMessage);
+                }
+
                 function redirectJogo(id) {
                     console.log('Redirecionando para o jogo com ID:', id);
-                    window.location.href = '/tela-jogo/'+id; // Substitua '/jogos/' pelo caminho real da sua rota de detalhes do jogo
+                    window.location.href = '/tela-jogo/' + id;
                     return false; // Impede que o link seja seguido
                 }
-            
-            function showDescription(jogoId, descricao) {
-                // Encontrar o elemento da descrição pelo ID do jogo
-                const descricaoElement = document.getElementById(`description-${jogoId}`);
-                // Preencher a descrição com o conteúdo dinâmico
-                descricaoElement.innerHTML = `<p>${descricao}</p>`;
-                // Exibir a descrição
-                descricaoElement.style.display = 'block';
-            }
-        
-            function hideDescription(jogoId) {
-                // Encontrar o elemento da descrição pelo ID do jogo
-                const descricaoElement = document.getElementById(`description-${jogoId}`);
-                // Ocultar a descrição
-                descricaoElement.style.display = 'none';
-            }
-        </script>
-                <div id="jogos-da-semana-card">
-                    <h4>Mais jogados</h4>
-                </div>
-        
-                <div class="carousel-container">
-                    <div class="cards-container">
-                        <div id="jogo-container-1" class="jogo-container">
-                            <a href="caminho-jogo1" class="card-link">
-                                <div class="card">
-                                    <img src="fotos/Jogo1.PNG" alt="Imagem 1">
-                                    <div class="descricao" id="description">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
-                                <button>
-                                    <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                                </button>
-                            </span>
-                            
-                        </div>
-                        
-                        <div id="jogo-container-1" class="jogo-container">
-                            <a href="caminho-jogo1" class="card-link">
-                                <div class="card">
-                                    <img src="fotos/jogo2.PNG" alt="Imagem 1">
-                                    <div class="descricao" id="description">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
-                                <button>
-                                    <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                                </button>
-                            </span>
-                            
-                        </div>
-        
-                        <div id="jogo-container-1" class="jogo-container">
-                            <a href="caminho-jogo1" class="card-link">
-                                <div class="card">
-                                    <img src="fotos/jogo3.PNG" alt="Imagem 1">
-                               <div class="descricao" id="description">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
-                                <button>
-                                    <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                                </button>
-                            </span>
-                            
-                        </div>
-                        <div id="jogo-container-1" class="jogo-container">
-                            <a href="caminho-jogo1" class="card-link">
-                                <div class="card">
-                                    <img src="fotos/jogo4.PNG" alt="Imagem 1">
+
+                function showDescription(jogoId, descricao) {
+                    // Encontrar o elemento da descrição pelo ID do jogo
+                    const descricaoElement = document.getElementById(`description-${jogoId}`);
+                    // Preencher a descrição com o conteúdo dinâmico
+                    descricaoElement.innerHTML = `<p>${descricao}</p>`;
+                    // Exibir a descrição
+                    descricaoElement.style.display = 'block';
+                }
+
+                function hideDescription(jogoId) {
+                    // Encontrar o elemento da descrição pelo ID do jogo
+                    const descricaoElement = document.getElementById(`description-${jogoId}`);
+                    // Ocultar a descrição
+                    descricaoElement.style.display = 'none';
+                }
+            </script>
+            <div id="jogos-da-semana-card">
+                <h4>Mais jogados</h4>
+            </div>
+
+            <div class="carousel-container">
+                <div class="cards-container">
+                    <div id="jogo-container-1" class="jogo-container">
+                        <a href="caminho-jogo1" class="card-link">
+                            <div class="card">
+                                <img src="fotos/Jogo1.PNG" alt="Imagem 1">
                                 <div class="descricao" id="description">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
-                                <button>
-                                    <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                                </button>
-                            </span>
-                            
-                        </div>
-                        <div id="jogo-container-1" class="jogo-container">
-                            <a href="caminho-jogo1" class="card-link">
-                                <div class="card">
-                                    <img src="fotos/jogo5.PNG" alt="Imagem 1">
-                                    <div class="descricao" id="description">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
-                                <button>
-                                    <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                                </button>
-                            </span>
-                            
-                        </div>
-                        <div id="jogo-container-1" class="jogo-container">
-                            <a href="caminho-jogo1" class="card-link">
-                                <div class="card">
-                                    <img src="fotos/jogo5.PNG" alt="Imagem 1">
-                                <div class="descricao" id="description">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel
+                                        nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam
+                                        incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
                                 </div>
                             </div>
                         </a>
-                        <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
+                        <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            onmouseleave="description(event)">
                             <button>
                                 <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
                             </button>
                         </span>
-                        
+
                     </div>
-                        <div id="jogo-container-1" class="jogo-container">
-                            <a href="caminho-jogo1" class="card-link">
-                                <div class="card">
-                                    <img src="fotos/jogo7.PNG" alt="Imagem 1">
-                                    <div class="descricao" id="description">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
-                                    </div>
+
+                    <div id="jogo-container-1" class="jogo-container">
+                        <a href="caminho-jogo1" class="card-link">
+                            <div class="card">
+                                <img src="fotos/jogo2.PNG" alt="Imagem 1">
+                                <div class="descricao" id="description">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel
+                                        nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam
+                                        incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
                                 </div>
-                            </a>
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
-                                <button>
-                                    <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                                </button>
-                            </span>
-                            
-                        </div>
-                        <div id="jogo-container-1" class="jogo-container">
-                            <a href="caminho-jogo1" class="card-link">
-                                <div class="card">
-                                    <img src="fotos/jogo8.PNG" alt="Imagem 1">
-                                    <div class="descricao" id="description">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
-                                <button>
-                                    <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                                </button>
-                            </span>
-                            
-                        </div>
-                        <div id="jogo-container-1" class="jogo-container">
-                            <a href="caminho-jogo1" class="card-link">
-                                <div class="card">
-                                    <img src="fotos/jogo9.PNG" alt="Imagem 1">
-                                    <div class="descricao" id="description">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
-                                <button>
-                                    <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                                </button>
-                            </span>
-                            
-                        </div>
-                        <div id="jogo-container-1" class="jogo-container">
-                            <a href="caminho-jogo1" class="card-link">
-                                <div class="card">
-                                    <img src="fotos//jogo10.PNG" alt="Imagem 1">
-                                    <div class="descricao" id="description">
-                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)" onmouseleave="description(event)">
-                                <button>
-                                    <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                                </button>
-                            </span>
-                            
-                        </div>
+                            </div>
+                        </a>
+                        <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            onmouseleave="description(event)">
+                            <button>
+                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
+                            </button>
+                        </span>
+
                     </div>
+
+                    <div id="jogo-container-1" class="jogo-container">
+                        <a href="caminho-jogo1" class="card-link">
+                            <div class="card">
+                                <img src="fotos/jogo3.PNG" alt="Imagem 1">
+                                <div class="descricao" id="description">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel
+                                        nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam
+                                        incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            onmouseleave="description(event)">
+                            <button>
+                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
+                            </button>
+                        </span>
+
+                    </div>
+                    <div id="jogo-container-1" class="jogo-container">
+                        <a href="caminho-jogo1" class="card-link">
+                            <div class="card">
+                                <img src="fotos/jogo4.PNG" alt="Imagem 1">
+                                <div class="descricao" id="description">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel
+                                        nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam
+                                        incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            onmouseleave="description(event)">
+                            <button>
+                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
+                            </button>
+                        </span>
+
+                    </div>
+                    <div id="jogo-container-1" class="jogo-container">
+                        <a href="caminho-jogo1" class="card-link">
+                            <div class="card">
+                                <img src="fotos/jogo5.PNG" alt="Imagem 1">
+                                <div class="descricao" id="description">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel
+                                        nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam
+                                        incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            onmouseleave="description(event)">
+                            <button>
+                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
+                            </button>
+                        </span>
+
+                    </div>
+                    <div id="jogo-container-1" class="jogo-container">
+                        <a href="caminho-jogo1" class="card-link">
+                            <div class="card">
+                                <img src="fotos/jogo5.PNG" alt="Imagem 1">
+                                <div class="descricao" id="description">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel
+                                        nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam
+                                        incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            onmouseleave="description(event)">
+                            <button>
+                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
+                            </button>
+                        </span>
+
+                    </div>
+                    <div id="jogo-container-1" class="jogo-container">
+                        <a href="caminho-jogo1" class="card-link">
+                            <div class="card">
+                                <img src="fotos/jogo7.PNG" alt="Imagem 1">
+                                <div class="descricao" id="description">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel
+                                        nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam
+                                        incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            onmouseleave="description(event)">
+                            <button>
+                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
+                            </button>
+                        </span>
+
+                    </div>
+                    <div id="jogo-container-1" class="jogo-container">
+                        <a href="caminho-jogo1" class="card-link">
+                            <div class="card">
+                                <img src="fotos/jogo8.PNG" alt="Imagem 1">
+                                <div class="descricao" id="description">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel
+                                        nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam
+                                        incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            onmouseleave="description(event)">
+                            <button>
+                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
+                            </button>
+                        </span>
+
+                    </div>
+                    <div id="jogo-container-1" class="jogo-container">
+                        <a href="caminho-jogo1" class="card-link">
+                            <div class="card">
+                                <img src="fotos/jogo9.PNG" alt="Imagem 1">
+                                <div class="descricao" id="description">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel
+                                        nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam
+                                        incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            onmouseleave="description(event)">
+                            <button>
+                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
+                            </button>
+                        </span>
+
+                    </div>
+                    <div id="jogo-container-1" class="jogo-container">
+                        <a href="caminho-jogo1" class="card-link">
+                            <div class="card">
+                                <img src="fotos//jogo10.PNG" alt="Imagem 1">
+                                <div class="descricao" id="description">
+                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae optio vel
+                                        nisi, natus qui voluptate perspiciatis voluptas tempora earum quas laboriosam
+                                        incidunt similique est eos ex nulla quasi! Laudantium, delectus.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            onmouseleave="description(event)">
+                            <button>
+                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
+                            </button>
+                        </span>
+
+                    </div>
+                </div>
             </div>
         </main>
-      
+
         <footer>
             <p>&copy; LUNAR 2024.</p>
         </footer>
         <script>
             document.getElementById("redireciona").addEventListener("click", function () {
-                window.location.href = "home.html";
+                window.location.href = "/";
             });
         </script>
-       
+
     </section>
 </body>
 

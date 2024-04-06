@@ -17,28 +17,32 @@
 <body>
     <header>
         <nav>
-            <div class="logo" id="redireciona"> 
+            <div class="logo" id="redireciona">
                 <script>
-                    document.getElementById("redireciona").addEventListener("click", function() {
-                        window.location.href = "home.html";
+                    document.getElementById("redireciona").addEventListener("click", function () {
+                        window.location.href = "/";
                     });
                 </script>
-                    <img src="/public/fotos//lunarfoguete.png" alt="">
-                    <h4>LUNAR</h4>
+                <img src="/public/fotos//lunarfoguete.png" alt="">
+                <h4>LUNAR</h4>
             </div>
             <ul type="none" class="menu">
                 <li>
-                    <a href="biblioteca.html"><img class="iconeMenu" src="/public/icones/jogos.svg" alt=""></a>
+                    <a href="biblioteca"><img class="iconeMenu" src="icones/perfil.svg" alt=""></a>
                 </li>
                 <li>
-                    <a href="criador.html"><img class="iconeMenu" src="/public/icones/criador.svg" alt=""></a>
+                    <a href="jogos"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
                 </li>
                 <li>
-                    <a href="sobre.html"><img class="iconeMenu" src="/public/icones/sobre.svg" alt=""></a>
+                    <a href="criador.html"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
+                </li>
+                <li>
+                    <a href="sobre.html"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
                 </li>
                 <form action="">
                     <div id="div-pesquisa">
-                        <button type="submit" id="img-scr"><img id="img-src-img" src="/public/icones/srcescuro.svg" alt=""></button>
+                        <button type="submit" id="img-scr"><img id="img-src-img" src="/public/icones/srcescuro.svg"
+                                alt=""></button>
                         <input class="input-pesquisa" type="text" placeholder="Buscar por Jogo">
                     </div>
                 </form>
@@ -48,18 +52,18 @@
             </div>
         </nav>
     </header>
-    
+
     <main>
         <section>
             <form action="/editar-jog/<%= jogo.id %>" method="POST">
-                <input type="text" placeholder="<%= jogo.nome %>" name="nome"> 
-                <textarea placeholder="<%= jogo.descricao %>" cols="30" rows="10" name="descricao"></textarea> 
+                <input type="text" placeholder="<%= jogo.nome %>" name="nome">
+                <textarea placeholder="<%= jogo.descricao %>" cols="30" rows="10" name="descricao"></textarea>
                 <input type="text" placeholder="Nova Imagem" name="imagem">
-                <input type="text" placeholder="Novas imagens para o carrossel" name="carrossel"> 
+                <input type="text" placeholder="Novas imagens para o carrossel" name="carrossel">
                 <button type="submit">Atualizar Jogo</button>
             </form>
         </section>
-        
+
 
     </main>
 
@@ -71,6 +75,16 @@
         function activateFileInput() {
             document.getElementById('fileInput').click();
         }
+        // Verifique se há uma mensagem de alerta na query string
+        const params = new URLSearchParams(window.location.search);
+        const alertMessage = params.get('alert');
+
+        // Se houver uma mensagem de alerta, exiba-a em um alerta
+        if (alertMessage) {
+            alert(alertMessage);
+        }
+
     </script>
 </body>
+
 </html>
