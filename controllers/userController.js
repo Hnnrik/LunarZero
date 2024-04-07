@@ -70,7 +70,6 @@ router.get('/biblioteca', async (req, res) => {
 
     // Obtenha o ID do usuário atualmente logado
     const usuarioId = req.session.usuario._id;
-
     // Consulte os jogos publicados pelo usuário logado
     const jogos = await Jogo.find({ usuario: usuarioId });
 
@@ -93,11 +92,13 @@ const verificarAutenticacao = (req, res, next) => {
 
 
 router.get('/cadastro-jogo', verificarAutenticacao ,(req, res) => {
-  res.sendFile(path.join(__dirname,'..', 'views', 'cadastro-jogo.html'));
+  const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
+  res.render('cadastro-jogo', {nomeUsuario});
 });
 
 router.get('/criador', (req, res) => {
-  res.sendFile(path.join(__dirname, '..','views', 'criador.html'));
+  const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
+  res.render('criador', {nomeUsuario});
 });
 
 router.get('/jogos', async (req, res) => {
@@ -159,7 +160,7 @@ router.get('/buscar-jogo', async (req, res) => {
       // Procure o jogo pelo nome no banco de dados
       const jogo = await Jogo.findOne({ nome: nomeJogo });
       if (!jogo) {
-          return res.status(404).send('Jogo não encontrado');
+        return res.redirect('/jogos?alert=Jogo não encontrado');
       }
 
       // Redirecione para a página do jogo com o ID correspondente
@@ -172,16 +173,15 @@ router.get('/buscar-jogo', async (req, res) => {
 
 router.get('/tela-jogo/:id', async (req, res) => {
   try {
-    const nome =req.session.nomeDeUsuario;
+    const nomeUsuario =req.session.nomeDeUsuario;
       const jogo = await Jogo.findById(req.params.id);
       if (!jogo) {
-          return res.redirect('/tela-jogo/'+jogoId+'?alert=Faça login');
+          return res.status(404).send('Jogo não encontrado');
       }
-      res.render('tela-jogo', {  jogo, nome });
+      res.render('tela-jogo', {  jogo, nomeUsuario });
   } catch (error) {
       console.error(error);
-      res.status(500);
-      return res.redirect('/tela-jogo/'+jogoId+'?alert=Faça login');
+      res.status(500).send('Erro ao recuperar informações do jogo');
   }
 }); 
 
@@ -229,11 +229,14 @@ router.post('/editar-jog/:id', async (req, res) => {
 
 
 router.get('/sobre', (req, res) => {
-  res.sendFile(path.join(__dirname, '..','views', 'sobre.html'));
+  const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
+  res.render('sobre', {nomeUsuario});
+  
 });
 
 router.get('/tela-jogo', (req, res) => {
-  res.sendFile(path.join(__dirname, '..','views', 'tela-jogo.html'));
+  const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
+  res.render('tela-jogo', {nomeUsuario});
 });
 
 

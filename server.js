@@ -11,7 +11,6 @@ const app = express();
 const port = 3000;
 
 
-
 app.set('view engine', 'ejs'); // Defina o engine de templates como EJS
 app.set('views', path.join(__dirname, 'views')); // Defina o diretório de views
 
@@ -25,6 +24,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
+
 .then(() => console.log('Conectado ao MongoDB Atlas'))
 .catch(err => console.error('Erro ao conectar ao MongoDB Atlas:', err));
 

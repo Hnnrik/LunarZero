@@ -34,20 +34,22 @@
                     <a href="jogos"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
                 </li>
                 <li>
-                    <a href="criador.html"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
+                    <a href="criador"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
                 </li>
                 <li>
-                    <a href="sobre.html"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
+                    <a href="sobre"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
                 </li>
-                <form action="">
+                <form action="/buscar-jogo" method="GET">
                     <div id="div-pesquisa">
-                        <button type="submit" id="img-scr"><img id="img-src-img" src="icones/srcescuro.svg" alt=""></button>
-                        <input class="input-pesquisa" type="text" placeholder="Buscar por Jogo">
+                        <button type="submit" id="img-scr"><img id="img-src-img" src="icones/srcescuro.svg"
+                                alt=""></button>
+                        <input class="input-pesquisa" name="nomeJogo" type="text" placeholder="Buscar por Jogo">
                     </div>
                 </form>
             </ul>
-            <div class="perfil">
-                <img class="icone" src="https://avatars.githubusercontent.com/u/93449870?v=4">
+            <div class="perfil" data-bs-toggle="popover" title="Perfil"
+                    data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
+                    <img class="icone" src="https://avatars.githubusercontent.com/u/93449870?v=4">
             </div>
         </nav>
     </header>
@@ -81,7 +83,14 @@ const alertMessage = params.get('alert');
 if (alertMessage) {
   alert(alertMessage);
 }
-
+$(document).ready(function () {
+    $('.perfil').click(function () {
+        $(this).popover({
+            html: true,
+            trigger: 'manual'
+        }).popover('show');
+    });
+});
     </script>
 </body>
 </html>

@@ -40,18 +40,29 @@
                     </div>
 
                 </span>
-
+        
                 <div id="menuOffCanvas" class="conteudoOffCanvas">
-
                     <ul class="listaOffCanvas">
                         <li>
-                            <a href="home.html"><img class="iconeMenu" src="icones/home.svg" alt=""></a>
+                            <a href="/"><img class="iconeMenu" src="icones/home.svg" alt=""></a>
                         </li>
                         <li>
-                            <a href="biblioteca.html"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
+                            <a href="biblioteca"><img class="iconeMenu" src="icones/perfil.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="jogos"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="criador.html"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
                         </li>
                         <li>
                             <a href="sobre.html"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <div class="perfil" data-bs-toggle="popover" title="Perfil"
+                                data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
+                                 <img class="iconeMenu" src="fotos/fotomobile.png">
+                             </div>
                         </li>
                     </ul>
                 </div>
@@ -85,127 +96,14 @@
 
             <div class="carousel-container">
                 <div class="cards-container">
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/Jogo1.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo2.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo3.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo4.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo5.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo5.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo7.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo8.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo9.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos//jogo10.PNG" alt="Imagem 1">
-                            </div>
+                    <% jogos.forEach(jogo=> { %>
+                        <div class="jogo-container" onclick="redirectJogo('<%= jogo._id %>')" action="">
 
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
+                            <div class="card">
+                                <img src="<%= jogo.imagem %>" alt="Imagem 1">
+                            </div>
+                        </div>
+                        <% }); %>
                 </div>
             </div>
 
@@ -215,127 +113,14 @@
 
             <div class="carousel-container">
                 <div class="cards-container">
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/Jogo1.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo2.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo3.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo4.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo5.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo5.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo7.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo8.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos/jogo9.PNG" alt="Imagem 1">
-                            </div>
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
-                    <div id="jogo-container-1" class="jogo-container">
-                        <a href="caminho-jogo1" class="card-link">
-                            <div class="card">
-                                <img src="fotos//jogo10.PNG" alt="Imagem 1">
-                            </div>
+                    <% jogos.forEach(jogo=> { %>
+                        <div class="jogo-container" onclick="redirectJogo('<%= jogo._id %>')" action="">
 
-                        </a>
-                        <span class="btn-carrossel-mobile">
-                            <button>
-                                <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
-                            </button>
-                        </span>
-                    </div>
+                            <div class="card">
+                                <img src="<%= jogo.imagem %>" alt="Imagem 1">
+                            </div>
+                        </div>
+                        <% }); %>
                 </div>
             </div>
 
@@ -359,10 +144,10 @@
                         <a href="jogos"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
                     </li>
                     <li>
-                        <a href="criador.html"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
+                        <a href="criador"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
                     </li>
                     <li>
-                        <a href="sobre.html"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
+                        <a href="sobre"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
                     </li>
                     <form action="/buscar-jogo" method="GET">
                         <div id="div-pesquisa">
@@ -478,7 +263,7 @@
                 }
             </script>
             <div id="jogos-da-semana-card">
-                <h4>Mais votados/h4>
+                <h4>Mais votados</h4>
             </div>
             <div class="carousel-container">
                 <div class="cards-container">

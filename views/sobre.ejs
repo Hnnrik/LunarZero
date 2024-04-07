@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre</title>
     <script src="script.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="sobre.css">
     <script src="sobre.js"></script>
 
@@ -42,16 +44,27 @@
                 </span>
 
                 <div id="menuOffCanvas" class="conteudoOffCanvas">
-
                     <ul class="listaOffCanvas">
                         <li>
-                            <a href="home.html"><img class="iconeMenu" src="icones/home.svg" alt=""></a>
+                            <a href="/"><img class="iconeMenu" src="icones/home.svg" alt=""></a>
                         </li>
                         <li>
-                            <a href="biblioteca.html"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
+                            <a href="biblioteca"><img class="iconeMenu" src="icones/perfil.svg" alt=""></a>
                         </li>
                         <li>
-                            <a href="sobre.html"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
+                            <a href="jogos"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="criador"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="sobre"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <div class="perfil" data-bs-toggle="popover" title="Perfil"
+                                data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
+                                 <img class="iconeMenu" src="fotos/fotomobile.png">
+                             </div>
                         </li>
                     </ul>
                 </div>
@@ -120,10 +133,10 @@
                         <a href="jogos"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
                     </li>
                     <li>
-                        <a href="criador.html"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
+                        <a href="criador"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
                     </li>
                     <li>
-                        <a href="sobre.html"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
+                        <a href="sobre"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
                     </li>
                     <form action="/buscar-jogo" method="GET">
                         <div id="div-pesquisa">
@@ -217,7 +230,14 @@
         if (alertMessage) {
             alert(alertMessage);
         }
-
+        $(document).ready(function () {
+            $('.perfil').click(function () {
+                $(this).popover({
+                    html: true,
+                    trigger: 'manual'
+                }).popover('show');
+            });
+        });
     </script>
 </body>
 

@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="/public/tela-jogo-style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="/public/script.js"></script>
     <script src="/public/tela-jogo.js"></script>
     <title>Lunar</title>
 </head>
+
 <body>
 
     <style>
@@ -21,412 +28,463 @@
             cursor: pointer;
             color: #ccc;
         }
-        .estrelas{
+
+        .estrelas {
+            display: inline;
+            margin-bottom: 5%;
+        }
+        .starD {
+            font-size: 30px;
+            cursor: pointer;
+            color: #ccc;
+        }
+
+        .estrelasD {
             display: inline;
             margin-bottom: 5%;
         }
     </style>
 
-<section id="bodyMobile">
-    <header>
-        <section id="section-mobile-home">
-            <span class="btn-nav-mobile">
-                <button id="gatilhoMenu">
-                    <img src="/public/icones/menu.svg" class="btn-nav-mobile-img" alt="">
-                </button>
-            </span>
-            <div id="menuOffCanvas" class="conteudoOffCanvas">
-                <ul class="listaOffCanvas">
-                    <li>
-                        <a href="/"><img class="iconeMenu" src="/public/icones/home.svg" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="biblioteca.html"><img class="iconeMenu" src="/public/icones/jogos.svg" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="sobre.html"><img class="iconeMenu" src="/public/icones/sobre.svg" alt=""></a>
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </header>
-
-
-    <main>
-        <section id="descricao-jogo-section">
-            <div id="descricao-jogo-div-imagem-e-texto">
-                <div id="descricao-jogo-coluna-1">
-                    <img id="descricao-jogo-imagem" src="/public/fotos/jogo1.PNG" alt="imagem do jogo">
-                </div>
-                <div id="descricao-jogo-coluna-2">
-                    <h3 id="descricao-jogo-titulo">Hollow Knight</h3>
-                    <div id="descricao-jogo-div-paragrafo">
-                        <p id="descricao-jogo-paragrafo">Forje seu caminho em Hollow Knight! Uma aventura de ação épica em um vasto reino arruinado de insetos e heróis. Explore cavernas serpenteantes, lute contra criaturas malignas e alie-se a insetos bizarros num estilo clássico 2D desenhado à mão.</p>
-                    </div>
-                    <img id="descricao-jogo-icone-avaliacao" src="/public/icones/estrelas-avaliacao.svg" alt="imagem-avaliação-jogo">
-                </div>
-            </div>
-
-            <div id="carousel-container">
-                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="d-flex justify-content-around">
-                                <img src="/public/fotos/jogo11.1.jpeg" class="d-block w-25" alt="Game 1">
-                                <img src="/public/fotos/jogo11.2.jpeg" class="d-block w-25" alt="Game 2">
-                                <img src="/public/fotos/jogo11.3.jpeg" class="d-block w-25" alt="Game 3">
-                            </div>
-    
-                        </div>
-                        <div class="carousel-item">
-                            <div class="d-flex justify-content-around">
-                                <img src="/public/fotos/jogo11.1.jpeg" class="d-block w-25" alt="Game 4">
-                                <img src="/public/fotos/jogo11.1.jpeg" class="d-block w-25" alt="Game 5">
-                                <img src="/public/fotos/jogo11.1.jpeg   " class="d-block w-25" alt="Game 6">
-                            </div>
-    
-                        </div>
-    
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Anterior</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Próximo</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="section-comentarios">
-            <div id="div-btn-titulo-comentarios">
-                <span id="btn-comentar">
-                    <button onclick="comentar()">
-                        <img id="img-btn-comentarios" src="/public/icones/plus.svg" alt="">
+    <section id="bodyMobile">
+        <header>
+            <section id="section-mobile-home">
+                <span class="btn-nav-mobile">
+                    <button id="gatilhoMenu">
+                        <img src="/public/icones/menu.svg" class="btn-nav-mobile-img" alt="">
                     </button>
                 </span>
-                <div id="div-titulo-do-botao-comentar">
-                    <p id="titulo-do-botao-comentar">
-                        <b>COMENTAR</b>
-                    </p>
+                <div id="menuOffCanvas" class="conteudoOffCanvas">
+                    <ul class="listaOffCanvas">
+                        <li>
+                            <a href="/"><img class="iconeMenu" src="/public/icones/home.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="biblioteca"><img class="iconeMenu" src="/public/icones/perfil.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="jogos"><img class="iconeMenu" src="/public/icones/jogos.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="criador"><img class="iconeMenu" src="/public/icones/criador.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="sobre"><img class="iconeMenu" src="/public/icones/sobre.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <div class="perfil" data-bs-toggle="popover" title="Perfil"
+                                data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
+                                <img class="iconeMenu" src="/public/fotos/fotomobile.png">
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </div>
+            </section>
+        </header>
 
-            <div id="div-dos-comentarios row">
-                <div class="comentario comenta" id="targgetComentaM">
-                    <form action="" style="width: 100%;">
-                    <div class="div-do-header-do-comentario">
-                        <div class="div-foto-perfil-do-comentario">
-                            <img class="foto-perfil-do-comentario" src="/public/icones/icone perfil.svg" alt="foto perfil">
-                        </div>
-                        <div class="div-perfil-e-avaliacao-do-comentario">
-                            <div class="div-nome-do-usuario-do-comentario">
-                                <h5 class="nome-do-usuario-do-comentario"><b>nomeUsuario</b></h5>
-                            </div>
-                            <div class="div-avaliacao-do-comentario">
-                                <img class="avaliacao-do-comentario" src="/public/icones/estrelas-avaliacao.svg" alt="">
-                            </div>
-                        </div>
-                        
+
+
+        <main>
+            <section id="descricao-jogo-section">
+                <div id="descricao-jogo-div-imagem-e-texto">
+                    <div id="descricao-jogo-coluna-1">
+                        <img id="descricao-jogo-imagem" src="<%= jogo.imagem%>" alt="imagem do jogo">
                     </div>
-                    <div class="div-do-paragrafo-do-comentario">
-                        <p class="paragrafo-do-comentario"> <textarea placeholder="COMENTÁRIO..."  style="width: 100%;"></textarea></p>
-                    </div>
-                    <input  type="submit">
-                </form>
-                </div>
-                <div class="comentario">
-                    <div class="div-do-header-do-comentario">
-                        <div class="div-foto-perfil-do-comentario">
-                            <img class="foto-perfil-do-comentario" src="/public/icones/icone perfil.svg" alt="foto perfil">
+                    <div id="descricao-jogo-coluna-2">
+                        <h3 id="descricao-jogo-titulo"><%= jogo.nome%></h3>
+                        <div id="descricao-jogo-div-paragrafo">
+                            <p id="descricao-jogo-paragrafo"><%= jogo.descricao%></p>
                         </div>
-                        <div class="div-perfil-e-avaliacao-do-comentario">
-                            <div class="div-nome-do-usuario-do-comentario">
-                                <h5 class="nome-do-usuario-do-comentario"><b>hrnk</b></h5>
-                            </div>
-                            <div class="div-avaliacao-do-comentario">
-                                <img class="avaliacao-do-comentario" src="/public/icones/estrelas-avaliacao.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="div-data-e-likes-do-comentario">
-                            <div class="div-data-do-comentario">
-                                <p class="paragrafo-data-do-comentario"><b>25/02/2024</b></p>
-                            </div>
-                            <div class="div-likes-do-comentario">
-                                <img class="likes-do-comentario" src="/public/icones/icone-like.svg">
-                                <p class="paragrafo-likes-do-comentario"><b>1.2K</b></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="div-do-paragrafo-do-comentario">
-                        <p class="paragrafo-do-comentario"> E  BOSTA ACABOU COM MINHA FAMÍLIA, E COLOCOU FOGO NO MEU CACHORRO, 10/10</p>
+                        <img id="descricao-jogo-icone-avaliacao" src="/public/icones/estrelas-avaliacao.svg"
+                            alt="imagem-avaliação-jogo">
                     </div>
                 </div>
 
-                <div class="comentario">
-                    <div class="div-do-header-do-comentario">
-                        <div class="div-foto-perfil-do-comentario">
-                            <img class="foto-perfil-do-comentario" src="/public/icones/icone perfil.svg" alt="foto perfil">
-                        </div>
-                        <div class="div-perfil-e-avaliacao-do-comentario">
-                            <div class="div-nome-do-usuario-do-comentario">
-                                <h5 class="nome-do-usuario-do-comentario"><b>Josué caçador de casadas</b></h5>
-                            </div>
-                            <div class="div-avaliacao-do-comentario">
-                                <img class="avaliacao-do-comentario" src="/public/icones/estrelas-avaliacao.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="div-data-e-likes-do-comentario">
-                            <div class="div-data-do-comentario">
-                                <p class="paragrafo-data-do-comentario"><b>25/02/2024</b></p>
-                            </div>
-                            <div class="div-likes-do-comentario">
-                                <img class="likes-do-comentario" src="/public/icones/icone-like.svg">
-                                <p class="paragrafo-likes-do-comentario"><b>1.2K</b></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="div-do-paragrafo-do-comentario">
-                        <p class="paragrafo-do-comentario">QUE JOGO LIXO, PREFIRO COMER LIXO TÔXICO DO QUE TER QUE JOGAR ISSO DE NOVO, ESSE PDAÇO DE BOSTA ACABOU COM MINHA FAMÍLIA, E COLOCOU FOGO NO MEU CACHORRO, 10/10</p>
-                    </div>
-                </div>
+                <div id="carousel-container">
+                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="d-flex justify-content-around">
+                                    <% jogo.carrossel.forEach((foto, index)=> { %>
 
-                <div class="comentario">
-                    <div class="div-do-header-do-comentario">
-                        <div class="div-foto-perfil-do-comentario">
-                            <img class="foto-perfil-do-comentario" src="/public/icones/icone perfil.svg" alt="foto perfil">
-                        </div>
-                        <div class="div-perfil-e-avaliacao-do-comentario">
-                            <div class="div-nome-do-usuario-do-comentario">
-                                <h5 class="nome-do-usuario-do-comentario"><b>Josué caçador de casadas</b></h5>
-                            </div>
-                            <div class="div-avaliacao-do-comentario">
-                                <img class="avaliacao-do-comentario" src="/public/icones/estrelas-avaliacao.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="div-data-e-likes-do-comentario">
-                            <div class="div-data-do-comentario">
-                                <p class="paragrafo-data-do-comentario"><b>25/02/2024</b></p>
-                            </div>
-                            <div class="div-likes-do-comentario">
-                                <img class="likes-do-comentario" src="/public/icones/icone-like.svg">
-                                <p class="paragrafo-likes-do-comentario"><b>1.2K</b></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="div-do-paragrafo-do-comentario">
-                        <p class="paragrafo-do-comentario">QUE JOGO LIXO, PREFIRO COMER LIXO TÔXICO DO QUE TER QUE JOGAR ISSO DE NOVO, ESSE PDAÇO DE BOSTA ACABOU COM MINHA FAMÍLIA, E COLOCOU FOGO NO MEU CACHORRO, 10/10</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                                    <img src="<%= foto %>" class="d-block w-25" alt="Game 3">
+                                    <% }); %>
 
-
-
-    </main>
-
-    <footer></footer>
-   
-</section>
-<section id="bodyDasktop">
-    <header>
-        <nav>
-            <div class="logo" id="redireciona"> 
-                <script>
-                    document.getElementById("redireciona").addEventListener("click", function() {
-                        window.location.href = "/";
-                    });
-                </script>
-                    <img src="/public/fotos/lunarfoguete.png" alt="">
-                    <h4>LUNAR</h4>
-            </div>
-            <div id="div-navbar">
-                <ul type="none" class="menu">
-                    <li>
-                        <a href="biblioteca"><img class="iconeMenu" src="/public/icones/jogos.svg" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="criador.html"><img class="iconeMenu" src="/public/icones/criador.svg" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="sobre.html"><img class="iconeMenu" src="/public/icones/sobre.svg" alt=""></a>
-                    </li>
-                    <form action="/buscar-jogo" method="GET">
-                        <div id="div-pesquisa">
-                            <button type="submit" id="img-scr"><img id="img-src-img" src="/icones/srcescuro.svg"
-                                    alt=""></button>
-                            <input class="input-pesquisa" name="nomeJogo" type="text" placeholder="Buscar por Jogo">
-                        </div>
-                    </form>
-                </ul>
-            </div>
-            <div class="perfil">
-                <img class="icone" src="https://avatars.githubusercontent.com/u/93449870?v=4">
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <section id="section-descricao-do-jogo">
-            <div id="div-descricao-do-jogo">
-
-                <div id="div-img-texto-avalicao-da-descricao-do-jogo">
-                    <div id="div-img-descricao-jogo">
-                        <img id="img-descricao-jogo" src="<%= jogo.imagem %>" alt="imagem do jogo">
-                    </div>
-                    <div id="div-texto-avaliacao-da-descricao-do-jogo">
-                        <div id="div-texto-avaliacao-da-descricao-do-jogo-2">
-                            <div id="div-titulo-paragrafo-descricao-do-jogo">
-                                <div id="div-titulo-descricao-do-jogo">
-                                    <h3 id="titulo-descricao-do-jogo"><%= jogo.nome %></h3>
                                 </div>
-                                <div id="div-paragrafo-descricao-do-jogo">
-                                    <p id="paragrafo-descricao-do-jogo">
-                                        <%= jogo.descricao %>
-                                    </p>
+
+                            </div>
+                           
+
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Anterior</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Próximo</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="section-comentarios">
+                <div id="div-btn-titulo-comentarios">
+                    <span id="btn-comentar">
+                        <button onclick="comentar()">
+                            <img id="img-btn-comentarios" src="/public/icones/plus.svg" alt="">
+                        </button>
+                    </span>
+                    <div id="div-titulo-do-botao-comentar">
+                        <p id="titulo-do-botao-comentar">
+                            <b>COMENTAR</b>
+                        </p>
+                    </div>
+                </div>
+
+                <div id="div-dos-comentarios row">
+                    <<div class="comentario comenta" id="targgetComentaM">
+                        <form action="/tela-jogo/<%= jogo.id %>/comentario" method="POST" style="width: 100%;">
+                            <div class="div-do-header-do-comentario">
+                                <div class="div-foto-perfil-do-comentario">
+                                    <img class="foto-perfil-do-comentario" src="/public/icones/icone perfil.svg"
+                                        alt="foto perfil">
+                                </div>
+                                <div class="div-perfil-e-avaliacao-do-comentario">
+                                    <div class="div-nome-do-usuario-do-comentario">
+                                        <h5 class="nome-do-usuario-do-comentario">
+                                            <%= nomeUsuario %>
+                                        </h5>
+                                    </div>
+                                    <div class="div-avaliacao-do-comentario estrelas" id="stars">
+                                        <span class="star" data-value="1">&#9733;</span>
+                                        <span class="star" data-value="2">&#9733;</span>
+                                        <span class="star" data-value="3">&#9733;</span>
+                                        <span class="star" data-value="4">&#9733;</span>
+                                        <span class="star" data-value="5">&#9733;</span>
+                                    </div>
+                                    <input type="hidden" name="nota" id="nota" value="0">
+                                    <!-- Adicione um campo oculto para a nota -->
                                 </div>
                             </div>
-                            <% let somaNotas = 0; %>
-                            <% jogo.comentarios.forEach(comentario => { %>
-                                <% somaNotas += comentario.nota; %>
-                            <% }); %>
-                            <% const mediaNotas = jogo.comentarios.length > 0 ? somaNotas / jogo.comentarios.length : 0; %>
-                            
-                            <div id="div-avaliação-download-descricao-do-jogo">
-                                <div id="div-avaliacao-descricao-do-jogo">
-                                    <img id="img-avaliacao-descricao-do-jogo" src="/public/icones/start.svg" alt="imagem estrelas avaliacao">
-                                    <b>nota: <%= mediaNotas.toFixed(2) %></b>
-                                </div>
-                                <div id="div-botao-download-descricao-do-jogo">
-                                    <button id="botao-download-descricao-do-jogo">
-                                        <img id="img-download-descricao-do-jogo" src="/public/icones/download.svg" alt="imagem do botao de download">
-                                    </button>
-                                </div>
+                            <div class="div-do-paragrafo-do-comentario">
+                                <p class="paragrafo-do-comentario">
+                                    <textarea name="texto" placeholder="COMENTÁRIO..." style="width: 100%;"></textarea>
+                                </p>
                             </div>
-                        </div>
+                            <input type="submit">
+                        </form>
+                        <script>
+                            $(document).ready(function () {
+                                $('.perfil').click(function () {
+                                    $(this).popover({
+                                        html: true,
+                                        trigger: 'manual'
+                                    }).popover('show');
+                                });
+                            });
+                            const stars = document.querySelectorAll('.star');
+
+                            stars.forEach(star => {
+                                star.addEventListener('click', () => {
+                                    const value = parseInt(star.getAttribute('data-value'));
+                                    document.getElementById('nota').value = value;
+                                    highlightStars(value);
+                                });
+                            });
+
+                            function highlightStars(value) {
+                                stars.forEach((star, index) => {
+                                    if (index < value) {
+                                        star.style.color = '#ffc107'; // Cor amarela para estrelas selecionadas
+                                    } else {
+                                        star.style.color = '#ccc'; // Cor padrão para estrelas não selecionadas
+                                    }
+                                });
+                            }
+                            const params = new URLSearchParams(window.location.search);
+                            const alertMessage = params.get('alert');
+
+                            // Se houver uma mensagem de alerta, exiba-a em um alerta
+                            if (alertMessage) {
+                                alert(alertMessage);
+                            }
+                        </script>
                     </div>
-                </div>
-                
-                <div class="carrossel-container">
-                  
-                        <div class="carrossel">
-                            <% jogo.carrossel.forEach((foto, index) => { %>
-                                <div class="div-imagem-carrossel">
-                                    <img class="img-carrossel" src="<%= foto %>" alt="Imagem <%= index + 1 %>">
-                                </div>
-                            <% }); %>
-                        </div>
-                </div>
-            </div>
-        </section>
+                <% jogo.comentarios.forEach(comentario=> { %>
 
-        <section id="section-comentarios">
-            <div id="div-btn-titulo-comentarios">
-                <span id="span-btn-comentar">
-                    <button id="btn-comentar" onclick="comentar()">
-                        <img id="img-btn-comentarios" src="/public/icones/plus.svg" alt="">
-                    </button>
-                </span>
-                <div id="div-titulo-do-botao-comentar">
-                    <p id="titulo-do-botao-comentar">
-                        <b>COMENTAR</b>
-                    </p>
-                </div>
-            </div>
-
-            <div id="div-dos-comentarios ">
-                <div class="comentario comenta" id="targgetComentaD">
-                    <form action="/tela-jogo/<%= jogo.id %>/comentario" method="POST" style="width: 100%;">
+                    <div class="comentario">
                         <div class="div-do-header-do-comentario">
                             <div class="div-foto-perfil-do-comentario">
-                                <img class="foto-perfil-do-comentario" src="/public/icones/icone perfil.svg" alt="foto perfil">
+                                <img class="foto-perfil-do-comentario" src="/public/icones/icone perfil.svg"
+                                    alt="foto perfil">
                             </div>
                             <div class="div-perfil-e-avaliacao-do-comentario">
                                 <div class="div-nome-do-usuario-do-comentario">
-                                    <h5 class="nome-do-usuario-do-comentario"><%= nome %></h5>
+                                    <h5 class="nome-do-usuario-do-comentario"><b><%= comentario.usuario  %></b></h5>
                                 </div>
-                                <div class="div-avaliacao-do-comentario estrelas" id="stars">
-                                    <span class="star" data-value="1">&#9733;</span>
-                                    <span class="star" data-value="2">&#9733;</span>
-                                    <span class="star" data-value="3">&#9733;</span>
-                                    <span class="star" data-value="4">&#9733;</span>
-                                    <span class="star" data-value="5">&#9733;</span>
+                                <div class="div-avaliacao-do-comentario">
+                                    <img class="avaliacao-do-comentario" src=""alt="">
                                 </div>
-                                <input type="hidden" name="nota" id="nota" value="0"> <!-- Adicione um campo oculto para a nota -->
+                            </div>
+                            <div class="div-data-e-likes-do-comentario">
+                                <div class="div-likes-do-comentario">
+                                    <img class="likes-do-comentario" src="/public/icones/start.svg">
+                                    <p class="paragrafo-likes-do-comentario"><b><%= comentario.nota %></b></p>
+                                </div>
                             </div>
                         </div>
                         <div class="div-do-paragrafo-do-comentario">
-                            <p class="paragrafo-do-comentario">
-                                <textarea name="texto" placeholder="COMENTÁRIO..." style="width: 100%;"></textarea>
-                            </p>
-                        </div>
-                        <input type="submit">
-                    </form>
-                    <script>
-    const stars = document.querySelectorAll('.star');
-
-    stars.forEach(star => {
-        star.addEventListener('click', () => {
-            const value = parseInt(star.getAttribute('data-value'));
-            document.getElementById('nota').value = value;
-            highlightStars(value);
-        });
-    });
-
-    function highlightStars(value) {
-        stars.forEach((star, index) => {
-            if (index < value) {
-                star.style.color = '#ffc107'; // Cor amarela para estrelas selecionadas
-            } else {
-                star.style.color = '#ccc'; // Cor padrão para estrelas não selecionadas
-            }
-        });
-    }
-    const params = new URLSearchParams(window.location.search);
-                const alertMessage = params.get('alert');
-
-                // Se houver uma mensagem de alerta, exiba-a em um alerta
-                if (alertMessage) {
-                    alert(alertMessage);
-                }
-</script>
-                </div>
-                <% jogo.comentarios.forEach(comentario => { %>
-                <div class="comentario">
-                    <div class="div-do-header-do-comentario">
-                        <div class="div-foto-perfil-do-comentario">
-                            <img class="foto-perfil-do-comentario" src="/public/icones/icone perfil.svg" alt="foto perfil">
-                        </div>
-                        <div class="div-perfil-e-avaliacao-do-comentario">
-                            <div class="div-nome-do-usuario-do-comentario">
-                                <h5 class="nome-do-usuario-do-comentario"><%= comentario.usuario %></h5>
-                            </div>
-                            <div class="div-avaliacao-do-comentario">
-                                
-                            </div>
-                        </div>
-                        <div class="div-data-e-likes-do-comentario">
-                            <div class="div-likes-do-comentario">
-                                <img class="avaliacao-do-comentario" src="/public/icones/start.svg" alt="">
-                                <p class="paragrafo-likes-do-comentario"><%= comentario.nota %></p>
-                            </div>
+                            <p class="paragrafo-do-comentario"><%= comentario.texto %></p>
                         </div>
                     </div>
-                    <div class="div-do-paragrafo-do-comentario">
-                        <p class="paragrafo-do-comentario"><%= comentario.texto %></p>
-                    </div>
+
+                    
+
+                    
                 </div>
                 <% }); %>
-            </div>
-        </section>
-    </main>
 
-    <footer></footer>
+            </section>
 
 
-</section>
+
+        </main>
+
+        <footer></footer>
+
+    </section>
+    <section id="bodyDasktop">
+        <header>
+            <nav>
+                <div class="logo" id="redireciona">
+                    <script>
+                        document.getElementById("redireciona").addEventListener("click", function () {
+                            window.location.href = "/";
+                        });
+                    </script>
+                    <img src="/public/fotos/lunarfoguete.png" alt="">
+                    <h4>LUNAR</h4>
+                </div>
+                <div id="div-navbar">
+                    <ul type="none" class="menu">
+                        <li>
+                            <a href="/biblioteca"><img class="iconeMenu" src="/public/icones/perfil.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="/jogos"><img class="iconeMenu" src="/public/icones/jogos.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="/criador"><img class="iconeMenu" src="/public/icones/criador.svg" alt=""></a>
+                        </li>
+                        <li>
+                            <a href="/sobre"><img class="iconeMenu" src="/public/icones/sobre.svg" alt=""></a>
+                        </li>
+                        <form action="/buscar-jogo" method="GET">
+                            <div id="div-pesquisa">
+                                <button type="submit" id="img-scr"><img id="img-src-img" src="/public/icones/srcescuro.svg"
+                                        alt=""></button>
+                                <input class="input-pesquisa" name="nomeJogo" type="text" placeholder="Buscar por Jogo">
+                            </div>
+                        </form>
+                    </ul>
+                </div>
+                <div class="perfil" data-bs-toggle="popover" title="Perfil"
+                    data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
+                    <img class="icone" src="https://avatars.githubusercontent.com/u/93449870?v=4">
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section id="section-descricao-do-jogo">
+                <div id="div-descricao-do-jogo">
+
+                    <div id="div-img-texto-avalicao-da-descricao-do-jogo">
+                        <div id="div-img-descricao-jogo">
+                            <img id="img-descricao-jogo" src="<%= jogo.imagem %>" alt="imagem do jogo">
+                        </div>
+                        <div id="div-texto-avaliacao-da-descricao-do-jogo">
+                            <div id="div-texto-avaliacao-da-descricao-do-jogo-2">
+                                <div id="div-titulo-paragrafo-descricao-do-jogo">
+                                    <div id="div-titulo-descricao-do-jogo">
+                                        <h3 id="titulo-descricao-do-jogo">
+                                            <%= jogo.nome %>
+                                        </h3>
+                                    </div>
+                                    <div id="div-paragrafo-descricao-do-jogo">
+                                        <p id="paragrafo-descricao-do-jogo">
+                                            <%= jogo.descricao %>
+                                        </p>
+                                    </div>
+                                </div>
+                                <% let somaNotas=0; %>
+                                    <% jogo.comentarios.forEach(comentario=> { %>
+                                        <% somaNotas +=comentario.nota; %>
+                                            <% }); %>
+                                                <% const mediaNotas=jogo.comentarios.length> 0 ? somaNotas /
+                                                    jogo.comentarios.length : 0; %>
+
+                                                    <div id="div-avaliação-download-descricao-do-jogo">
+                                                        <div id="div-avaliacao-descricao-do-jogo">
+                                                            <img id="img-avaliacao-descricao-do-jogo"
+                                                                src="/public/icones/start.svg"
+                                                                alt="imagem estrelas avaliacao">
+                                                            <b>nota: <%= mediaNotas.toFixed(2) %></b>
+                                                        </div>
+                                                        <div id="div-botao-download-descricao-do-jogo">
+                                                            <button id="botao-download-descricao-do-jogo">
+                                                                <img id="img-download-descricao-do-jogo"
+                                                                    src="/public/icones/download.svg"
+                                                                    alt="imagem do botao de download">
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carrossel-container">
+
+                        <div class="carrossel">
+                            <% jogo.carrossel.forEach((foto, index)=> { %>
+                                <div class="div-imagem-carrossel">
+                                    <img class="img-carrossel" src="<%= foto %>" alt="Imagem <%= index + 1 %>">
+                                </div>
+                                <% }); %>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-comentarios">
+                <div id="div-btn-titulo-comentarios">
+                    <span id="span-btn-comentar">
+                        <button id="btn-comentar" onclick="comentar()">
+                            <img id="img-btn-comentarios" src="/public/icones/plus.svg" alt="">
+                        </button>
+                    </span>
+                    <div id="div-titulo-do-botao-comentar">
+                        <p id="titulo-do-botao-comentar">
+                            <b>COMENTAR</b>
+                        </p>
+                    </div>
+                </div>
+
+                <div id="div-dos-comentarios ">
+                    <div class="comentario comenta" id="targgetComentaD">
+                        <form action="/tela-jogo/<%= jogo.id %>/comentario" method="POST" style="width: 100%;">
+                            <div class="div-do-header-do-comentario">
+                                <div class="div-foto-perfil-do-comentario">
+                                    <img class="foto-perfil-do-comentario" src="/public/icones/icone perfil.svg"
+                                        alt="foto perfil">
+                                </div>
+                                <div class="div-perfil-e-avaliacao-do-comentario">
+                                    <div class="div-nome-do-usuario-do-comentario">
+                                        <h5 class="nome-do-usuario-do-comentario">
+                                            <%= nomeUsuario %>
+                                        </h5>
+                                    </div>
+                                    <div class="div-avaliacao-do-comentario estrelasD" id="starsD">
+                                        <span class="starD" data-value="1">&#9733;</span>
+                                        <span class="starD" data-value="2">&#9733;</span>
+                                        <span class="starD" data-value="3">&#9733;</span>
+                                        <span class="starD" data-value="4">&#9733;</span>
+                                        <span class="starD" data-value="5">&#9733;</span>
+                                    </div>
+                                    <input type="hidden" name="nota" id="notaD" value="0">
+                                    <!-- Adicione um campo oculto para a nota -->
+                                </div>
+                            </div>
+                            <div class="div-do-paragrafo-do-comentario">
+                                <p class="paragrafo-do-comentario">
+                                    <textarea name="texto" placeholder="COMENTÁRIO..." style="width: 100%;"></textarea>
+                                </p>
+                            </div>
+                            <input type="submit">
+                        </form>
+                        <script>
+                            $(document).ready(function () {
+                                $('.perfil').click(function () {
+                                    $(this).popover({
+                                        html: true,
+                                        trigger: 'manual'
+                                    }).popover('show');
+                                });
+                            });
+
+
+                            const starsD = document.querySelectorAll('.starD');
+
+                            starsD.forEach(starD => {
+                                starD.addEventListener('click', () => {
+                                    const value = parseInt(starD.getAttribute('data-value'));
+                                    document.getElementById('notaD').value = value;
+                                    highlightStars(value);
+                                });
+                            });
+                            
+                            function highlightStars(value) {
+                                starsD.forEach((starD, indexD) => {
+                                    if (indexD < value) {
+                                        starD.style.color = '#ffc107'; // Cor amarela para estrelas selecionadas
+                                    } else {
+                                        starD.style.color = '#ccc'; // Cor padrão para est  relas não selecionadas
+                                    }
+                                });
+                            }
+                            const paramsD = new URLSearchParams(window.location.search);
+                            const alertMessageD = paramsD.get('alert');
+
+                            // Se houver uma mensagem de alerta, exiba-a em um alerta
+                            if (alertMessageD) {
+                                alert(alertMessageD);
+                            }
+                        </script>
+                    </div>
+                    <% jogo.comentarios.forEach(comentario=> { %>
+                        <div class="comentario">
+                            <div class="div-do-header-do-comentario">
+                                <div class="div-foto-perfil-do-comentario">
+                                    <img class="foto-perfil-do-comentario" src="/public/icones/icone perfil.svg"
+                                        alt="foto perfil">
+                                </div>
+                                <div class="div-perfil-e-avaliacao-do-comentario">
+                                    <div class="div-nome-do-usuario-do-comentario">
+                                        <h5 class="nome-do-usuario-do-comentario">
+                                            <%= comentario.usuario %>
+                                        </h5>
+                                    </div>
+                                    <div class="div-avaliacao-do-comentario">
+
+                                    </div>
+                                </div>
+                                <div class="div-data-e-likes-do-comentario">
+                                    <div class="div-likes-do-comentario">
+                                        <img class="avaliacao-do-comentario" src="/public/icones/start.svg" alt="">
+                                        <p class="paragrafo-likes-do-comentario">
+                                            <%= comentario.nota %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="div-do-paragrafo-do-comentario">
+                                <p class="paragrafo-do-comentario">
+                                    <%= comentario.texto %>
+                                </p>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+            </section>
+        </main>
+
+        <footer></footer>
+
+
+    </section>
 </body>
+
 </html>
