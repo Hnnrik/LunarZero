@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 
 // Definição do schema para usuários
 const usuarioSchema = new mongoose.Schema({
+  perfil: {
+    type: String,
+  },
   nome: {
     type: String,
     required: true

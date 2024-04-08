@@ -389,6 +389,16 @@
         font-size:medium;
         text-align: center;
     }
+    .perfil{
+        width: 65px;
+        height: 65px;
+     }
+     .perfil img{
+        background-color: #D9D9D9;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+     }
 }
 
 @media screen and (min-width:769px) {
@@ -660,16 +670,15 @@
          height: 100%;
      }
      .perfil{
-        width: auto;
-        height: 95%;
+        width: 50px;
+        height: 50px;
      }
      .perfil img{
         background-color: #D9D9D9;
         height: 100%;
-        width: auto;
+        width: 100%;
         border-radius: 50%;
      }
-
 
     }
 

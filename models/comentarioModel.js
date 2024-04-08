@@ -5,6 +5,9 @@ const comentarioSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  fotoPerfil: {
+    type: String, 
+  },
   nota: {
     type: Number,
     required: true,
@@ -12,7 +15,7 @@ const comentarioSchema = new mongoose.Schema({
     max: 5
   },
   usuario: {
-    type:String,
+    type: String,
     required: true
   },
 });

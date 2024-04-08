@@ -392,7 +392,16 @@
     ol {
         list-style-type: none;
     }
-    
+    .perfil{
+        width: 65px;
+        height: 65px;
+     }
+     .perfil img{
+        background-color: #D9D9D9;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+     }
 }
 @media screen and (min-width:769px){
     #bodyMobile{
@@ -497,14 +506,15 @@
         height: 100%;
     }
     .perfil{
-       width: 5%;
-    }
-    .perfil img{
-       background-color: #D9D9D9;
-       height: 40px;
-       width: 40px;
-       border-radius: 50%;
-    }
+        width: 50px;
+        height: 50px;
+     }
+     .perfil img{
+        background-color: #D9D9D9;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+     }
     ul,
     ol {
         list-style-type: none;
@@ -837,7 +847,8 @@
     }
     
     .foto-perfil-do-comentario{
-        height: 75%;
+        height: 100%;
+        border-radius: 30px;
     }
     
     .div-perfil-e-avaliacao-do-comentario{

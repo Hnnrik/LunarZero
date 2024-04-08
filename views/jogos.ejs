@@ -43,9 +43,10 @@
                 </li>
             </ul>
             <div class="perfil" data-bs-toggle="popover" title="Perfil"
-                    data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
-                    <img class="icone" src="https://avatars.githubusercontent.com/u/93449870?v=4">
-            </div>
+            data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
+            <img class="icone" src="<%= fotoPerfil %>">
+        </div>
+
         </nav>
     </header>
     <main>
@@ -72,16 +73,17 @@
                         <a href="jogos"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
                     </li>
                     <li>
-                        <a href="criador.html"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
+                        <a href="criador"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
                     </li>
                     <li>
-                        <a href="sobre.html"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
+                        <a href="sobre"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
                     </li>
                     <li>
                         <div class="perfil" data-bs-toggle="popover" title="Perfil"
-                            data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
-                             <img class="iconeMenu" src="fotos/fotomobile.png">
-                         </div>
+                        data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
+                        <img class="icone" src="<%= fotoPerfil %>">
+                    </div>
+    
                     </li>
                 </ul>
             </div>

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <link rel="stylesheet" href="home.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -14,6 +16,7 @@
 
 <body>
     <section id="bodyMobile">
+        
         <header>
             <section id="section-mobile-home">
                 <span class="btn-nav-mobile">
@@ -33,8 +36,7 @@
                             <div id="div-pesquisa">
                                 <input class="input-pesquisa" type="text" placeholder="Buscar por Jogo"
                                     id="inputPesquisa">
-                                <button type="submit" id="img-scr"><img id="img-src-img" src="icones/srcescuro.svg"
-                                        alt=""></button>
+                                <button type="submit" id="img-scr"><img id="img-src-img" src="icones/srcescuro.svg" alt=""></button>
                             </div>
                         </form>
                     </div>
@@ -53,16 +55,17 @@
                             <a href="jogos"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
                         </li>
                         <li>
-                            <a href="criador.html"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
+                            <a href="criador"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
                         </li>
                         <li>
-                            <a href="sobre.html"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
+                            <a href="sobre"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
                         </li>
                         <li>
-                            <div class="perfil" data-bs-toggle="popover" title="Perfil"
-                                data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
-                                 <img class="iconeMenu" src="fotos/fotomobile.png">
-                             </div>
+                        <div class="perfil" data-bs-toggle="popover" title="Perfil"
+                            data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
+                            <img class="icone" src="<%= fotoPerfil %>">
+                        </div>
+        
                         </li>
                     </ul>
                 </div>
@@ -98,12 +101,11 @@
                 <div class="cards-container">
                     <% jogos.forEach(jogo=> { %>
                         <div class="jogo-container" onclick="redirectJogo('<%= jogo._id %>')" action="">
-
-                            <div class="card">
+                            <div class="carde">
                                 <img src="<%= jogo.imagem %>" alt="Imagem 1">
                             </div>
                         </div>
-                        <% }); %>
+                    <% }); %>
                 </div>
             </div>
 
@@ -115,12 +117,11 @@
                 <div class="cards-container">
                     <% jogos.forEach(jogo=> { %>
                         <div class="jogo-container" onclick="redirectJogo('<%= jogo._id %>')" action="">
-
-                            <div class="card">
+                            <div class="carde">
                                 <img src="<%= jogo.imagem %>" alt="Imagem 1">
                             </div>
                         </div>
-                        <% }); %>
+                    <% }); %>
                 </div>
             </div>
 
@@ -159,7 +160,7 @@
                 </ul>
                 <div class="perfil" data-bs-toggle="popover" title="Perfil"
                     data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
-                    <img class="icone" src="https://avatars.githubusercontent.com/u/93449870?v=4">
+                    <img class="icone" src="<%= fotoPerfil %>">
                 </div>
 
 
@@ -210,7 +211,7 @@
                     <% jogos.forEach(jogo=> { %>
                         <div class="jogo-container" onclick="redirectJogo('<%= jogo._id %>')" action="">
 
-                            <div class="card">
+                            <div class="carde">
                                 <img src="<%= jogo.imagem %>" alt="Imagem 1">
                                 <div class="descricao" id="description">
                                     <p>
@@ -219,10 +220,10 @@
                                 </div>
                             </div>
 
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            <span class="bcm" onmouseenter="description(event)"
                                 onmouseleave="description(event)">
                                 <button>
-                                    <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
+                                    <img src="icones/sobre.svg" class="bcmi" alt="">
                                 </button>
                             </span>
                         </div>
@@ -270,7 +271,7 @@
                     <% jogosO.forEach(jogo=> { %>
                         <div class="jogo-container" onclick="redirectJogo('<%= jogo._id %>')" action="">
 
-                            <div class="card">
+                            <div class="carde">
                                 <img src="<%= jogo.imagem %>" alt="Imagem 1">
                                 <div class="descricao" id="description">
                                     <p>
@@ -279,10 +280,10 @@
                                 </div>
                             </div>
 
-                            <span class="btn-carrossel-mobile" onmouseenter="description(event)"
+                            <span class="bcm" onmouseenter="description(event)"
                                 onmouseleave="description(event)">
                                 <button>
-                                    <img src="icones/sobre.svg" class="btn-carrossel-mobile-img" alt="">
+                                    <img src="icones/sobre.svg" class="bcmi" alt="">
                                 </button>
                             </span>
                         </div>

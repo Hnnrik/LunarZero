@@ -14,7 +14,7 @@
 <body>
     <header>  
          <nav>
-            <div class="logo" id="redireciona"> 
+            <div    class="logo" id="redireciona"> 
                 <script>
                     document.getElementById("redireciona").addEventListener("click", function() {
                         window.location.href = "/";
@@ -31,23 +31,24 @@
                 <a href="jogos"><img class="iconeMenu" src="icones/jogos.svg" alt=""></a>
             </li>
             <li>
-                <a href="criador.html"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
+                <a href="criador"><img class="iconeMenu" src="icones/criador.svg" alt=""></a>
             </li>
             <li>
-                <a href="sobre.html"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
+                <a href="sobre"><img class="iconeMenu" src="icones/sobre.svg" alt=""></a>
             </li>
         </ul>
-        <div class="perfil" data-bs-toggle="popover" title="Perfil" data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
-            <img src="https://avatars.githubusercontent.com/u/93449870?v=4">
-          </div>
+        <div class="perfil" data-bs-toggle="popover" title="Perfil"
+        data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
+        <img class="icone" src="<%= fotoPerfil %>">
+    </div>
+
         <script>
-            // Inicialize o popover do Bootstrap para o perfil
-            $(document).ready(function(){
-                $('.perfil').click(function() {
+            $(document).ready(function () {
+                $('.perfil').click(function () {
                     $(this).popover({
-                        html: true, // Permitir conteúdo HTML no popover
-                        trigger: 'manual' // Definir o gatilho manualmente
-                    }).popover('show'); // Mostrar o popover quando a div for clicada
+                        html: true,
+                        trigger: 'manual'
+                    }).popover('show');
                 });
             });
         </script>
@@ -89,8 +90,9 @@
             <li>
                 <div class="perfil" data-bs-toggle="popover" title="Perfil"
                     data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
-                    <img class="icone" src="https://avatars.githubusercontent.com/u/93449870?v=4">
+                    <img class="icone" src="<%= fotoPerfil %>">
                 </div>
+
             </li>
         </ul>
     </div>
@@ -107,14 +109,7 @@
 </section>
 
 <script>
-    $(document).ready(function () {
-        $('.perfil').click(function () {
-            $(this).popover({
-                html: true,
-                trigger: 'manual'
-            }).popover('show');
-        });
-    });
+
     
     $(document).ready(function(){
         $('.div-jogo').click(function() {

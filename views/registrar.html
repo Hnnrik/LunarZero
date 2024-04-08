@@ -11,10 +11,7 @@
 </head>
 <body>
     <header>
-        <div id="upLoadPhoto" onclick="openFileInput()">
-            <img src="">
-        </div>
-        <input type="file" id="fileInput" onchange="handleFileSelect(event)" style="display: none;">
+        <div id="upLoadPhoto"></div>
     </header>
     <main>
         <div id="registrar">
@@ -22,18 +19,36 @@
         </div>
 
         <div class="formulario">
-            <form action="/registrar" method="POST"> <!-- Defina o atributo "action" para a rota de registro e o método "POST" -->
-                <input type="text" placeholder="NOME" name="nome">
+            <form id="formRegistro" action="/registrar" method="POST"> <!-- Defina o atributo "action" para a rota de registro e o método "POST" -->
+                <input type="text" placeholder="Link para foto de perfil" name="perfil">
+                <input type="text" placeholder="NOME" name="nome" required>
                 <div>
-                    <input type="text" placeholder="NOME DE USUÁRIO" name="nomeDeUsuario">
-                    <input type="text" placeholder="DATA DE NASCIMENTO" name="dataNascimento">
+                    <input type="text" placeholder="NOME DE USUÁRIO" name="nomeDeUsuario" required>
+                    <input type="text" placeholder="DATA DE NASCIMENTO" name="dataNascimento" required>
                 </div>
-                <input type="email" placeholder="EMAIL" name="email"> <!-- Alterado para type="email" para validar o formato do email -->
-                <input type="password" placeholder="SENHA" name="senha"> <!-- Alterado para type="password" para ocultar a senha -->
-                <input type="password" placeholder="CONFIRMAR SENHA"> <!-- Adicionado campo para confirmar senha -->
-                <button id="#btncadastro" type="submit">CADASTRAR</button>
+                <input type="email" placeholder="EMAIL" name="email" required> <!-- Alterado para type="email" para validar o formato do email -->
+                <input type="password" id="senha" placeholder="SENHA" name="senha" required> <!-- Alterado para type="password" para ocultar a senha -->
+                <input type="password" id="confirmarSenha" placeholder="CONFIRMAR SENHA" required> <!-- Adicionado campo para confirmar senha -->
+                <div id="mensagemErroSenha" style="color: red;"></div> <!-- Div para exibir mensagens de erro de senha -->
+                <button id="btncadastro" type="submit">CADASTRAR</button>
             </form>
         </div>
+        
+        <script>
+            document.getElementById("formRegistro").addEventListener("submit", function(event) {
+                var senha = document.getElementById("senha").value;
+                var confirmarSenha = document.getElementById("confirmarSenha").value;
+        
+                if (senha.length < 8) {
+                    event.preventDefault(); // Impede o envio do formulário
+                    document.getElementById("mensagemErroSenha").innerText = "A senha deve ter no mínimo 8 caracteres.";
+                } else if (senha !== confirmarSenha) {
+                    event.preventDefault(); // Impede o envio do formulário
+                    document.getElementById("mensagemErroSenha").innerText = "As senhas não coincidem.";
+                }
+            });
+        </script>
+        
          <div id="footer">
             <img src="fotos/lunarfoguete.png" alt="FOGUETE LUNAR">
             <p>&copy; LUNAR 2024.</p>

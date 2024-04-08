@@ -45,9 +45,13 @@
                     </div>
                 </form>
             </ul>
-            <div class="perfil">
-                <img class="icone" src="https://avatars.githubusercontent.com/u/93449870?v=4">
-            </div>
+
+            <div class="perfil" data-bs-toggle="popover" title="Perfil"
+            data-bs-content="<% if (nomeUsuario) { %><a href='/logout'>Logout</a><% } else { %><a href='/login'>Login</a><% } %>">
+            <img class="icone" src="<%= fotoPerfil %>">
+        </div>
+
+
         </nav>
     </header>
 

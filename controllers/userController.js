@@ -45,13 +45,13 @@ router.get('/deletar-jogo/:id', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    // Consulte os jogos ordenados pela data de criação de forma decrescente
+ 
     const jogos = await Jogo.find().sort({ createdAt: -1 });
     const jogosO = await Jogo.find().sort({ nota: -1 });
-    // Verifique se o usuário está autenticado
     const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
-
-    res.render('home', { jogos,jogosO, nomeUsuario });
+    const fotoPerfil = req.session.usuario ? req.session.usuario.perfil : "/public/fotos/fotomobile.png";
+    // Renderize a página com os jogos encontrados, passando também o nome do usuário
+    res.render('home', { jogos,jogosO, nomeUsuario,fotoPerfil });
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro ao recuperar os jogos.');
@@ -69,12 +69,13 @@ router.get('/biblioteca', async (req, res) => {
     }
 
     // Obtenha o ID do usuário atualmente logado
+    const fotoPerfil = req.session.usuario ? req.session.usuario.perfil : "/public/fotos/fotomobile.png";
     const usuarioId = req.session.usuario._id;
     // Consulte os jogos publicados pelo usuário logado
     const jogos = await Jogo.find({ usuario: usuarioId });
 
     // Renderize a página com os jogos encontrados, passando também o nome do usuário
-    res.render('biblioteca', { jogos, nomeUsuario: req.session.usuario.nome });
+    res.render('biblioteca', { jogos, nomeUsuario: req.session.usuario.nome,fotoPerfil });
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro ao recuperar os jogos da biblioteca');
@@ -93,12 +94,14 @@ const verificarAutenticacao = (req, res, next) => {
 
 router.get('/cadastro-jogo', verificarAutenticacao ,(req, res) => {
   const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
-  res.render('cadastro-jogo', {nomeUsuario});
+  const fotoPerfil = req.session.usuario ? req.session.usuario.perfil : "/public/fotos/fotomobile.png";
+  res.render('cadastro-jogo', {nomeUsuario,fotoPerfil});
 });
 
 router.get('/criador', (req, res) => {
   const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
-  res.render('criador', {nomeUsuario});
+  const fotoPerfil = req.session.usuario ? req.session.usuario.perfil : "/public/fotos/fotomobile.png";
+  res.render('criador', {nomeUsuario,fotoPerfil});
 });
 
 router.get('/jogos', async (req, res) => {
@@ -106,8 +109,8 @@ router.get('/jogos', async (req, res) => {
     const jogos = await Jogo.find();
     // Verifique se o usuário está autenticado
     const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
-
-    res.render('jogos', { jogos, nomeUsuario });
+    const fotoPerfil = req.session.usuario ? req.session.usuario.perfil : "/public/fotos/fotomobile.png";
+    res.render('jogos', { jogos, nomeUsuario, fotoPerfil});
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro ao recuperar os jogos.');
@@ -128,33 +131,35 @@ router.post('/tela-jogo/:id/comentario', async (req, res) => {
     // Verifique se o usuário está autenticado
     if (!req.session.nomeDeUsuario) {
       return res.redirect('/tela-jogo/'+jogoId+'?alert=Faça login para comentar nos jogos');
-
     }
 
-    // Recupere o nome de usuário da sessão
+    // Recupere o nome de usuário e a foto de perfil da sessão
     const nomeUsuario = req.session.nomeDeUsuario;
-
-    // Crie um novo documento de comentário com o nome de usuário
-    const novoComentario = new Comentario({ texto, nota, usuario: nomeUsuario });
-
+    const fotoPerfil = req.session.usuario ? req.session.usuario.perfil : "/public/fotos/fotomobile.png";
+    
+    // Crie um novo documento de comentário com o nome de usuário e a foto de perfil
+    const novoComentario = new Comentario({ texto, nota, usuario: nomeUsuario, fotoPerfil });
+    
     // Adicione o novo comentário ao vetor de comentários do jogo
     jogo.comentarios.push(novoComentario);
-
+    
     // Salve o jogo atualizado de volta no banco de dados
     await jogo.save();
-
+    
+    // Redirecione de volta para a tela do jogo com um alerta de sucesso
     return res.redirect('/tela-jogo/'+jogoId+'?alert=Comentário enviado com sucesso');
 
   } catch (error) {
     console.error('Erro ao enviar comentário:', error);
     res.status(500);
     return res.redirect('/?alert=Ocorreu um erro');
-
   }
 });
 
+
 router.get('/buscar-jogo', async (req, res) => {
   try {
+
       const nomeJogo = req.query.nomeJogo;
       nomeJogo
       // Procure o jogo pelo nome no banco de dados
@@ -174,11 +179,12 @@ router.get('/buscar-jogo', async (req, res) => {
 router.get('/tela-jogo/:id', async (req, res) => {
   try {
     const nomeUsuario =req.session.nomeDeUsuario;
+    const fotoPerfil = req.session.usuario ? req.session.usuario.perfil : "/public/fotos/fotomobile.png";
       const jogo = await Jogo.findById(req.params.id);
       if (!jogo) {
           return res.status(404).send('Jogo não encontrado');
       }
-      res.render('tela-jogo', {  jogo, nomeUsuario });
+      res.render('tela-jogo', {  jogo, nomeUsuario, fotoPerfil });
   } catch (error) {
       console.error(error);
       res.status(500).send('Erro ao recuperar informações do jogo');
@@ -188,11 +194,12 @@ router.get('/tela-jogo/:id', async (req, res) => {
 router.get('/editar-jogo/:id', async (req, res) => {
   try {
     const nome =req.session.nomeDeUsuario;
+    const fotoPerfil = req.session.usuario ? req.session.usuario.perfil : "/public/fotos/fotomobile.png";
       const jogo = await Jogo.findById(req.params.id);
       if (!jogo) {
           return res.status(404).send('Jogo não encontrado');
       }
-      res.render('editar-jogo', {  jogo, nome });
+      res.render('editar-jogo', {  jogo, nome,fotoPerfil });
   } catch (error) {
       console.error(error);
       res.status(500).send('Erro ao recuperar informações do jogo');
@@ -230,13 +237,15 @@ router.post('/editar-jog/:id', async (req, res) => {
 
 router.get('/sobre', (req, res) => {
   const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
-  res.render('sobre', {nomeUsuario});
+  const fotoPerfil = req.session.usuario ? req.session.usuario.perfil : "/public/fotos/fotomobile.png";
+  res.render('sobre', {nomeUsuario,fotoPerfil});
   
 });
 
 router.get('/tela-jogo', (req, res) => {
   const nomeUsuario = req.session.usuario ? req.session.usuario.nome : null;
-  res.render('tela-jogo', {nomeUsuario});
+  const fotoPerfil = req.session.usuario ? req.session.usuario.perfil : "/public/fotos/fotomobile.png";
+  res.render('tela-jogo', {nomeUsuario,fotoPerfil});
 });
 
 
@@ -247,7 +256,7 @@ router.get('/login', (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { email, senha } = req.body;
-
+    
     const usuario = await Usuario.findOne({ email, senha });
     if (!usuario) {
       return res.redirect('/login?erro=Usuario ou senha incorretos');
@@ -272,7 +281,7 @@ router.get('/registrar', (req, res) => {
 
 router.post('/registrar', async (req, res) => {
   try {
-    const { nome, nomeDeUsuario, senha, email, dataNascimento } = req.body;
+    const { perfil, nome, nomeDeUsuario, senha, email, dataNascimento } = req.body;
 
     const usuarioExistente = await Usuario.findOne({ $or: [{ nomeDeUsuario }, { email }] });
     if (usuarioExistente) {
@@ -280,6 +289,7 @@ router.post('/registrar', async (req, res) => {
     }
 
     const novoUsuario = new Usuario({
+      perfil,
       nome,
       nomeDeUsuario,
       senha,
